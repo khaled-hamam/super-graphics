@@ -99,6 +99,24 @@
     <ClInclude Include="Skybox.h">
       <Filter>Models</Filter>
     </ClInclude>
+    <ClInclude Include="Coin.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="PoweUp.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Hero.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Block.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Spaceship.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Spikes.h">
+      <Filter>Models</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\cubemap.fragmentshader">

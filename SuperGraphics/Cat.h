@@ -10,11 +10,11 @@ public:
 
           new Cube(ResourceManager::getTexture("box"), vec3(0.f, 0.f, 0.f), vec3(0.f, 0.f, 0.f), vec3(1.f)),
 
-          new Cube(ResourceManager::getTexture("box"), vec3(-0.5f, 0.f, -5.f), vec3(0.f, 0.f, 0.f), vec3(1.f)),
+      //    new Cube(ResourceManager::getTexture("box"), vec3(-0.5f, 0.f, -5.f), vec3(0.f, 0.f, 0.f), vec3(1.f)),
 
-          new Cube(ResourceManager::getTexture("box"), vec3(-0.5f, 1.f, -5.f), vec3(0.f, 0.f, 0.f), vec3(1.f)),
+        //  new Cube(ResourceManager::getTexture("box"), vec3(-0.5f, 1.f, -5.f), vec3(0.f, 0.f, 0.f), vec3(1.f)),
 
-          new Cube(ResourceManager::getTexture("box"), vec3(2.f, 0.f, 0.f), vec3(0.f, 0.f, 0.f), vec3(1.f)),
+          //new Cube(ResourceManager::getTexture("box"), vec3(2.f, 0.f, 0.f), vec3(0.f, 0.f, 0.f), vec3(1.f)),
 
           // new Quad(ResourceManager::getTexture("bricks"), vec3(0.f, -0.5f, 0.f), vec3(90.f, 0.f, 0.f), vec3(50.f, 1.f, 50.f))
         };

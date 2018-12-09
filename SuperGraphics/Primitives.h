@@ -2,6 +2,28 @@
 #include "Primitive.h"
 #include "colors.h"
 
+class Triangle : public Primitive {
+public:
+	Triangle(Texture *texture,
+		vec3 position = vec3(0.f),
+		vec3 rotation = vec3(0.f),
+		vec3 scale = vec3(1.f)
+	) : Primitive(texture, position, rotation, scale) {
+		vertices = {
+			{ vec3(-0.15f, 0.f, 0.f), vec3(GREY), vec2(0.f, 0.f) },
+			{ vec3(0.f, 0.4f, 0.f), vec3(SILVER), vec2(0.f, 1.f) },
+			{ vec3(0.15f, 0.f, 0.f), vec3(SILVER), vec2(1.f, 1.f) },
+		};
+
+		indices = {
+			0, 1, 2
+		};
+
+		init();
+	}
+};
+
+
 class Quad : public Primitive {
 public: 
     Quad(Texture *texture, 

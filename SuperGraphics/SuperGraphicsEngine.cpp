@@ -1,6 +1,11 @@
 #include "SuperGraphicsEngine.h"
 #include "Cat.h"
-
+#include "Coin.h"
+#include "PoweUp.h"
+#include "Hero.h"
+#include "Block.h"
+#include "Spaceship.h"
+#include "Spikes.h"
 SuperGraphicsEngine::SuperGraphicsEngine()
 {
     this->windowWidth = 1200;
@@ -66,12 +71,24 @@ void SuperGraphicsEngine::initializeGLOptions() {
     // glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 }
 
-Cat *q;
+//Cat *q;
 Skybox *skybox;
+Coin *coin;
+PowerUp *powerup;
+Hero *hero;
+Spaceship *spaceship;
+Block *block;
+Spikes *spikes;
 void SuperGraphicsEngine::start()
 {
-    q = new Cat();
+   // q = new Cat();
     skybox = new Skybox();
+	coin = new Coin();
+	powerup = new PowerUp();
+	hero = new Hero();
+	block = new Block();
+	spaceship = new Spaceship();
+	spikes = new Spikes();
 
     double lastFrameDraw = 0;
     do {
@@ -98,9 +115,18 @@ void SuperGraphicsEngine::render()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
     ResourceManager::bindCamera(&mainCamera);
-    q->render();
-    q->update();
+   // q->render();
+    //q->update();
     skybox->render();
+	coin->render();
+	coin->update();
+	powerup->render();
+	powerup->update();
+	hero->render();
+	block->render();
+	spaceship->render();
+	//spaceship->update();
+	spikes->render();
 }
 
 void SuperGraphicsEngine::handleInput()

@@ -153,16 +153,22 @@
     <ClCompile Include="texture.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Block.h" />
     <ClInclude Include="Cat.h" />
+    <ClInclude Include="Coin.h" />
     <ClInclude Include="colors.h" />
     <ClInclude Include="FPCamera.h" />
+    <ClInclude Include="Hero.h" />
     <ClInclude Include="libs.h" />
     <ClInclude Include="Model.h" />
+    <ClInclude Include="PoweUp.h" />
     <ClInclude Include="Primitive.h" />
     <ClInclude Include="Primitives.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="shader.hpp" />
     <ClInclude Include="Skybox.h" />
+    <ClInclude Include="Spaceship.h" />
+    <ClInclude Include="Spikes.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="SuperGraphicsEngine.h" />
     <ClInclude Include="texture.h" />
