@@ -67,3 +67,39 @@ public:
         init();
     }
 };
+
+class Pyramid : public Primitive {
+public: 
+	Pyramid(Texture *texture,
+		vec3 position = vec3(0.f),
+		vec3 rotation = vec3(0.f),
+		vec3 scale = vec3(1.f),
+		vec3 color = vec3(BLACK)
+	) : Primitive(texture, position, rotation, scale) {
+		vertices = {
+			{ vec3(-0.5f, -0.5f, 0.5f), vec3(color), vec2(0.f, 1.f) },
+		{ vec3(-0.5f, -0.5f, -0.5f), vec3(color), vec2(0.f, 0.f) },
+		{ vec3(0.5f, -0.5f, -0.5f), vec3(color), vec2(1.f, 0.f) },
+		{ vec3(0.5f, -0.5f, 0.5f), vec3(color), vec2(1.f, 1.f) },
+		{ vec3(0.0f, 0.5f, 0.0f), vec3(color), vec2(1.f, 1.f) },
+		};
+
+		indices = {
+			0, 1, 2,
+
+			0, 2, 3,
+
+			0, 1, 4,
+
+			1, 2, 4,
+
+			2, 3, 4,
+
+			0, 3, 4,
+
+			0, 1, 4,
+		};
+
+		init();
+	}
+};
