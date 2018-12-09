@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Shader">
+      <UniqueIdentifier>{33d26d05-0ae3-49df-8bf7-18d767abe6f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Camera">
+      <UniqueIdentifier>{dec6208b-61d0-4014-a969-0eb4cb15d36b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{778e2207-2c72-4106-81e1-8e7ea6cd7300}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Texture">
+      <UniqueIdentifier>{c552861d-42f8-473e-8b68-632df50173f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Texture\TextureLoader">
+      <UniqueIdentifier>{b364dcb5-913f-422f-b217-6657f4f70dfb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{2da4d65f-8d00-4d8d-8c82-901d29319739}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Models">
+      <UniqueIdentifier>{0ee17d4d-6462-449f-9b8f-33deb404fcd2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Primitives">
+      <UniqueIdentifier>{d29dc363-dcdc-4d5d-be3e-ec76ad4486b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader\shaders">
+      <UniqueIdentifier>{35341142-33f4-4c80-b0b7-b633e917cf19}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="shader.cpp">
+      <Filter>Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="FPCamera.cpp">
+      <Filter>Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="texture.cpp">
+      <Filter>Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="SuperGraphicsEngine.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Primitive.cpp">
+      <Filter>Primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="Model.cpp">
+      <Filter>Models</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManager.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="stb_image.cpp">
+      <Filter>Texture\TextureLoader</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="FPCamera.h">
+      <Filter>Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="stb_image.h">
+      <Filter>Texture\TextureLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="texture.h">
+      <Filter>Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="colors.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="SuperGraphicsEngine.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Primitive.h">
+      <Filter>Primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="Primitives.h">
+      <Filter>Primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="Vertex.h">
+      <Filter>Primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Cat.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="libs.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="shader.hpp">
+      <Filter>Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Skybox.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="shaders\cubemap.fragmentshader">
+      <Filter>Shader\shaders</Filter>
+    </None>
+    <None Include="shaders\cubemap.vertexshader">
+      <Filter>Shader\shaders</Filter>
+    </None>
+    <None Include="shaders\FragmentShader.fragmentshader">
+      <Filter>Shader\shaders</Filter>
+    </None>
+    <None Include="shaders\VertexShader.vertexshader">
+      <Filter>Shader\shaders</Filter>
+    </None>
+    <None Include="shaders\skybox.fragmentshader">
+      <Filter>Shader\shaders</Filter>
+    </None>
+    <None Include="shaders\skybox.vertexshader">
+      <Filter>Shader\shaders</Filter>
+    </None>
+  </ItemGroup>
+</Project>

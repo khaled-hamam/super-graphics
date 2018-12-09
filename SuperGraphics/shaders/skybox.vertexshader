@@ -1,0 +1,15 @@
+#version 330 core
+
+layout(location = 0) in vec3 vp; 
+
+uniform mat4 ViewMatrix;
+uniform mat4 ProjectionMatrix;
+
+out vec3 fragmentTextCoord;
+
+void main() {
+	vec4 pos = ProjectionMatrix * mat4(mat3(ViewMatrix)) * vec4(vp, 1.0);
+	gl_Position = pos.xyww;
+	fragmentTextCoord = vp;
+}
+
