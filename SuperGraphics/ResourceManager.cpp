@@ -13,10 +13,25 @@ void ResourceManager::initializeShaders()
 void ResourceManager::initializeTextures()
 {
     textures["cat"] = new Texture("Assets/cat.png", 0);
-    textures["bricks"] = new Texture("Assets/bricks.jpg", 0);
 	textures["coin"] = new Texture("Assets/coin.png", 0);
-	textures["hero"] = new Texture("Assets/alien/alien_front.png",0);
-	textures["spaceship"] = new Texture("Assets/spaceship.png", 0);
+
+	textures["hero"] = new Texture(vector<string> {
+		"Assets/alien/alien_front.png",
+		"Assets/alien/alien_front.png",
+		"Assets/alien/alien_front.png",
+		"Assets/alien/alien_front.png",
+		"Assets/alien/alien_front.png",
+		"Assets/alien/alien_front.png"
+	}, 0);
+
+	textures["spaceship"] = new Texture(vector<string> {
+		"Assets/spaceship.png",
+		"Assets/spaceship.png",
+		"Assets/spaceship.png",
+		"Assets/spaceship.png",
+		"Assets/spaceship.png",
+		"Assets/spaceship.png"
+	}, 0);
 
     textures["box"] = new Texture(vector<string> {
         "Assets/box/box.jpg",
@@ -27,6 +42,14 @@ void ResourceManager::initializeTextures()
         "Assets/box/box.jpg"
     }, 0);
 
+	textures["box1"] = new Texture(vector<string> {
+		"Assets/box/box2.jpg",
+			"Assets/box/box2.jpg",
+			"Assets/box/box2.jpg",
+			"Assets/box/box2.jpg",
+			"Assets/box/box2.jpg",
+			"Assets/box/box2.jpg"
+	}, 0);
     textures["skybox"] = new Texture(vector<string> {
         "Assets/skybox/skybox_right.jpg",
         "Assets/skybox/skybox_left.jpg",
