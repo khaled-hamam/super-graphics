@@ -6,8 +6,8 @@ class Coin : public Model {
 public:
 	Coin() {
 		primitives = {
-			new Quad(ResourceManager::getTexture("coin"), vec3(0.5f, 1.f, 0.f), vec3(0.f), vec3(0.3f)),
-			new Quad(ResourceManager::getTexture("coin"), vec3(3.5f, 1.f, 0.f), vec3(0.f), vec3(0.3f)),
+			new Quad(ResourceManager::getTexture("coin"), vec3(0.5f, 1.5f, 0.f), vec3(0.f), vec3(0.3f)),
+			new Quad(ResourceManager::getTexture("coin"), vec3(3.5f, 1.5f, 0.f), vec3(0.f), vec3(0.3f)),
 
 		};
 	}
