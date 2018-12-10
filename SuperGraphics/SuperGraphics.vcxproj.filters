@@ -102,9 +102,6 @@
     <ClInclude Include="Coin.h">
       <Filter>Models</Filter>
     </ClInclude>
-    <ClInclude Include="PoweUp.h">
-      <Filter>Models</Filter>
-    </ClInclude>
     <ClInclude Include="Hero.h">
       <Filter>Models</Filter>
     </ClInclude>
@@ -114,7 +111,16 @@
     <ClInclude Include="Spaceship.h">
       <Filter>Models</Filter>
     </ClInclude>
-    <ClInclude Include="Spikes.h">
+    <ClInclude Include="Obstacle.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Spike.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="woodenBox.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="PowerUp.h">
       <Filter>Models</Filter>
     </ClInclude>
   </ItemGroup>
