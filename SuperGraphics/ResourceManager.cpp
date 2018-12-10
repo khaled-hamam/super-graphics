@@ -15,23 +15,9 @@ void ResourceManager::initializeTextures()
     textures["cat"] = new Texture("Assets/cat.png", 0);
 	textures["coin"] = new Texture("Assets/coin.png", 0);
 
-	textures["hero"] = new Texture(vector<string> {
-		"Assets/alien/alien_front.png",
-		"Assets/alien/alien_front.png",
-		"Assets/alien/alien_front.png",
-		"Assets/alien/alien_front.png",
-		"Assets/alien/alien_front.png",
-		"Assets/alien/alien_front.png"
-	}, 0);
+	textures["hero"] = new Texture("Assets/alien/alien_front.png",0);
 
-	textures["spaceship"] = new Texture(vector<string> {
-		"Assets/spaceship.png",
-		"Assets/spaceship.png",
-		"Assets/spaceship.png",
-		"Assets/spaceship.png",
-		"Assets/spaceship.png",
-		"Assets/spaceship.png"
-	}, 0);
+	textures["spaceship"] = new Texture("Assets/spaceship.png", 0);
 
     textures["box"] = new Texture(vector<string> {
         "Assets/box/box.jpg",

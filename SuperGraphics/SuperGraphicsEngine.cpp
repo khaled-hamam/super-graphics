@@ -1,11 +1,14 @@
 #include "SuperGraphicsEngine.h"
 #include "Cat.h"
 #include "Coin.h"
-#include "PoweUp.h"
+#include "PowerUp.h"
 #include "Hero.h"
 #include "Block.h"
 #include "Spaceship.h"
-#include "Spikes.h"
+#include "Spike.h"
+#include "Obstacle.h"
+#include "woodenBox.h"
+
 SuperGraphicsEngine::SuperGraphicsEngine()
 {
     this->windowWidth = 1200;
@@ -78,7 +81,9 @@ PowerUp *powerup;
 Hero *hero;
 Spaceship *spaceship;
 Block *block;
-Spikes *spikes;
+Obstacle *block1;
+woodenBox *box;
+Spike *spikes;
 void SuperGraphicsEngine::start()
 {
    // q = new Cat();
@@ -88,8 +93,9 @@ void SuperGraphicsEngine::start()
 	hero = new Hero();
 	block = new Block();
 	spaceship = new Spaceship();
-	spikes = new Spikes();
-
+	spikes = new Spike();
+	block1 = new Obstacle();
+	box = new woodenBox();
     double lastFrameDraw = 0;
     do {
         double now = glfwGetTime();
@@ -125,6 +131,8 @@ void SuperGraphicsEngine::render()
 	hero->render();
 	block->render();
 	spaceship->render();
+	block1->render();
+	box->render();
 	//spaceship->update();
 	spikes->render();
 }
