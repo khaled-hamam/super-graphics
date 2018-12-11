@@ -10,9 +10,9 @@ public:
 		vec3 scale = vec3(1.f)
 	) : Primitive(texture, position, rotation, scale) {
 		vertices = {
-			{ vec3(-0.15f, 0.f, 0.f), vec3(GREY), vec2(0.f, 0.f) },
-			{ vec3(0.f, 0.4f, 0.f), vec3(SILVER), vec2(0.f, 1.f) },
-			{ vec3(0.15f, 0.f, 0.f), vec3(SILVER), vec2(1.f, 1.f) },
+			{ vec3(0.5f, 0.f, 0.f), vec3(GREY), vec2(0.f, 0.f) },
+			{ vec3(0.f, 0.5f, 0.f), vec3(SILVER), vec2(0.f, 1.f) },
+			{ vec3(0.5f, 0.f, 0.f), vec3(SILVER), vec2(1.f, 1.f) },
 		};
 
 		indices = {
