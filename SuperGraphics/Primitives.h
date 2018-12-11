@@ -100,10 +100,10 @@ public:
 	) : Primitive(texture, position, rotation, scale) {
 		vertices = {
 			{ vec3(-0.5f, -0.5f, 0.5f), vec3(color), vec2(0.f, 1.f) },
-		{ vec3(-0.5f, -0.5f, -0.5f), vec3(color), vec2(0.f, 0.f) },
-		{ vec3(0.5f, -0.5f, -0.5f), vec3(color), vec2(1.f, 0.f) },
-		{ vec3(0.5f, -0.5f, 0.5f), vec3(color), vec2(1.f, 1.f) },
-		{ vec3(0.0f, 0.5f, 0.0f), vec3(color), vec2(1.f, 1.f) },
+			{ vec3(-0.5f, -0.5f, -0.5f), vec3(color), vec2(0.f, 0.f) },
+			{ vec3(0.5f, -0.5f, -0.5f), vec3(color), vec2(1.f, 0.f) },
+			{ vec3(0.5f, -0.5f, 0.5f), vec3(color), vec2(1.f, 1.f) },
+			{ vec3(0.0f, 0.5f, 0.0f), vec3(color), vec2(1.f, 1.f) },
 		};
 
 		indices = {
