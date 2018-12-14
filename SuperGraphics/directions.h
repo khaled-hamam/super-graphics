@@ -1,8 +1,9 @@
 #pragma once
 enum  Directions
 {
-	Up,
-	Down,
-	Left,
-	Right
+	UP,
+	DOWN,
+	LEFT,
+	RIGHT,
+	STATIC 
 };

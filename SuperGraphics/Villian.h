@@ -4,7 +4,9 @@
 class Villian : public Model
 {
 public:
-	int xpos = 0, xneg = -1;
+	int count = 0;
+	Directions dir = LEFT;
+
 	Villian() {
 		primitives = {
 			new Quad(nullptr, vec3(7.f, 0.6f, 0.f), vec3(0.f), vec3(0.2f)),
@@ -12,23 +14,23 @@ public:
 	}
 
 	void update() {
-		if (xpos < 100 && xneg == -1) {
-			primitives[0]->position += vec3(0.01f, 0.f, 0.f);
-			xpos++;
-		}
-		 if (xpos == 100) {
-			xpos = -1;
-			xneg = 0;
-		}
-		 if(xneg<100 &&xpos==-1){
+		if (count != 100 && dir == LEFT) {
+			cout << "left";
 			primitives[0]->position -= vec3(0.01f, 0.f, 0.f);
-			xneg++;
-
+			count++;
+			if (count == 100) {
+				dir = RIGHT;
+				count = 0;
+			}
 		}
-		 if (xneg == 100)
-		{
-			xneg = -1;
-			xpos = 0;
+		else if (count != 100 && dir == RIGHT) {
+			cout << "right";
+			primitives[0]->position += vec3(0.01f, 0.f, 0.f);
+			count++;
+			if (count == 100) {
+				dir = LEFT;
+				count = 0;
+			}
 		}
 	}
 	~Villian();

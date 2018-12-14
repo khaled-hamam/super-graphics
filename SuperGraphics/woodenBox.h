@@ -5,7 +5,8 @@
 class woodenBox : public Model
 {
 public:
-		int ypos = 0, yneg = -1;
+	int count = 0;
+	Directions dir = UP;
 	woodenBox() {
 		primitives = {
 			new Cube(ResourceManager::getTexture("box"), vec3(0.6, 1.0, 0.f), vec3(0.f, 0.f, 0.f), vec3(0.5f)),
@@ -13,23 +14,21 @@ public:
 	}
 
 	void update() {
-		if (ypos < 100 && yneg == -1) {
+		if (count != 50 && dir == UP) {
 			primitives[0]->position += vec3(0.f, 0.01f, 0.f);
-			ypos++;
+			count++;
+			if (count == 50) {
+				dir = DOWN;
+				count = 0;
+			}
 		}
-		if (ypos == 100) {
-			ypos = -1;
-			yneg = 0;
-		}
-		if (yneg<100 && ypos == -1) {
+		else if (count != 50 && dir == DOWN) {
 			primitives[0]->position -= vec3(0.0f, 0.01f, 0.f);
-			yneg++;
-
-		}
-		if (yneg == 100)
-		{
-			yneg = -1;
-			ypos = 0;
+			count++;
+			if (count == 50) {
+				dir = UP;
+				count = 0;
+			}
 		}
 	}
 	~woodenBox();
