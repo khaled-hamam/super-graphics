@@ -8,6 +8,7 @@ class Obstacle : public Model
 public:
 	int count = 0;
 	Directions dir = UP;
+	float step = 0.01;
 	Obstacle() {
 		primitives = {
 		//	new Cube(ResourceManager::getTexture("box"), vec3(0.6, 1.0, 0.f), vec3(0.f, 0.f, 0.f), vec3(0.5f)),
@@ -18,7 +19,7 @@ public:
 
 	void update() {
 		if (count!=50 &&dir==UP) {
-			primitives[0]->position += vec3(0.f, 0.01f, 0.f);
+			primitives[0]->position += vec3(0.f, step, 0.f);
 			count++;
 			if (count == 50) {
 				dir = DOWN;
@@ -26,7 +27,7 @@ public:
 			}
 		}
 		else if (count!=50&&dir==DOWN) {
-			primitives[0]->position -= vec3(0.0f, 0.01f, 0.f);
+			primitives[0]->position -= vec3(0.0f, step, 0.f);
 			count++;
 			if (count == 50) {
 				dir = UP;

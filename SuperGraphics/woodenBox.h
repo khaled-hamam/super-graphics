@@ -6,6 +6,7 @@ class woodenBox : public Model
 {
 public:
 	int count = 0;
+	float step = 0.01;
 	Directions dir = UP;
 	woodenBox() {
 		primitives = {
@@ -15,7 +16,7 @@ public:
 
 	void update() {
 		if (count != 50 && dir == UP) {
-			primitives[0]->position += vec3(0.f, 0.01f, 0.f);
+			primitives[0]->position += vec3(0.f, step, 0.f);
 			count++;
 			if (count == 50) {
 				dir = DOWN;
@@ -23,7 +24,7 @@ public:
 			}
 		}
 		else if (count != 50 && dir == DOWN) {
-			primitives[0]->position -= vec3(0.0f, 0.01f, 0.f);
+			primitives[0]->position -= vec3(0.f, step, 0.f);
 			count++;
 			if (count == 50) {
 				dir = UP;

@@ -5,6 +5,7 @@ class Villian : public Model
 {
 public:
 	int count = 0;
+	float step = 0.01;
 	Directions dir = LEFT;
 
 	Villian() {
@@ -16,7 +17,7 @@ public:
 	void update() {
 		if (count != 100 && dir == LEFT) {
 			cout << "left";
-			primitives[0]->position -= vec3(0.01f, 0.f, 0.f);
+			primitives[0]->position -= vec3(step, 0.f, 0.f);
 			count++;
 			if (count == 100) {
 				dir = RIGHT;
@@ -25,7 +26,7 @@ public:
 		}
 		else if (count != 100 && dir == RIGHT) {
 			cout << "right";
-			primitives[0]->position += vec3(0.01f, 0.f, 0.f);
+			primitives[0]->position += vec3(step, 0.f, 0.f);
 			count++;
 			if (count == 100) {
 				dir = LEFT;
