@@ -123,6 +123,9 @@
     <ClInclude Include="PowerUp.h">
       <Filter>Models</Filter>
     </ClInclude>
+    <ClInclude Include="Villian.h">
+      <Filter>Models</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\cubemap.fragmentshader">

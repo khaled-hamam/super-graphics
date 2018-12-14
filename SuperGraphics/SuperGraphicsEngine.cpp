@@ -8,7 +8,7 @@
 #include "Spike.h"
 #include "Obstacle.h"
 #include "woodenBox.h"
-
+#include "Villian.h"
 SuperGraphicsEngine::SuperGraphicsEngine()
 {
     this->windowWidth = 1200;
@@ -84,6 +84,8 @@ Block *block;
 Obstacle *block1;
 woodenBox *box;
 Spike *spikes;
+Villian *villian;
+Obstacle *o;
 void SuperGraphicsEngine::start()
 {
    // q = new Cat();
@@ -96,6 +98,7 @@ void SuperGraphicsEngine::start()
 	spikes = new Spike();
 	block1 = new Obstacle();
 	box = new woodenBox();
+	villian = new Villian();
     double lastFrameDraw = 0;
     do {
         double now = glfwGetTime();
@@ -121,26 +124,32 @@ void SuperGraphicsEngine::render()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
     ResourceManager::bindCamera(&mainCamera);
-   // q->render();
-    //q->update();
     skybox->render();
 	coin->render();
 	coin->update();
 	powerup->render();
 	powerup->update();
 	hero->render();
+	hero->update();
 	block->render();
 	spaceship->render();
+	spaceship->update();
 	block1->render();
 	box->render();
-	//spaceship->update();
+	box->update();
 	spikes->render();
+	villian->render();
+	villian->update();
+
 }
 
 void SuperGraphicsEngine::handleInput()
 { 
     float step = 0.05f;
     float angle = 1.f;
+	if (glfwGetKey(this->window, GLFW_KEY_M) == GLFW_PRESS) {
+		hero->setDir(1);
+	}
     if(glfwGetKey(this->window, GLFW_KEY_W) == GLFW_PRESS) {
         mainCamera.Walk(step);
     }

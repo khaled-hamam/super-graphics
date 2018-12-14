@@ -15,7 +15,9 @@ public:
 		}
 	}
 
-	void update(){}
+	void update(){
+		
+	}
 	~Spike();
 };
 
