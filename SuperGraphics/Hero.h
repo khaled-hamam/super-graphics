@@ -5,54 +5,45 @@
 class Hero : public Model
 {
 public:
-	Directions direction;
+	Directions direction = STATIC;
 	vec3 lastPos;
 	float jumpStep = 0.01f, moveStep = 0.03f;
-	Hero() {
+	Hero(vec3 position = vec3(0.f), vec3 rotaion = vec3(0.f), vec3 scale = vec3(0.f)) {
 		primitives = {
-			new Quad(ResourceManager::getTexture("hero"), vec3(-1.f, 1.f, 0.f), vec3(0.f), vec3(1.2f)),
+			new Quad(ResourceManager::getTexture("hero"), vec3(0.f, 0.f, 0.f), vec3(0.f), vec3(1.f)),
 		};
+		move(position);
+		rotate(rotaion);
+		changeScale(scale);
 
 	}
 	void update() {
 		if (direction == UP) {
 			primitives[0]->position += vec3(0.f, jumpStep, 0.f);
-			if ( primitives[0]->position.y- lastPos.y > 100*jumpStep) {
+			if ( primitives[0]->position.y- lastPos.y > 1) {
 				direction = DOWN;
 			}
 		}
 		else if (direction == DOWN) {
 			primitives[0]->position -= vec3(0.f, jumpStep, 0.f);
-			if ( primitives[0]->position.y - lastPos.y  == 0.f) {
+			if ( primitives[0]->position.y - lastPos.y  <= 0.f) {
+				primitives[0]->position.y = lastPos.y;
 				direction = STATIC;
 			}
 		}
-		else if (direction == LEFT) {
-			primitives[0]->position -= vec3(moveStep, 0.f, 0.f);
-			direction = STATIC;			
-		}
-		else if (direction == RIGHT) {
-			primitives[0]->position += vec3(moveStep, 0.f, 0.f);
-			direction = STATIC;
-		}
-	}
 
-	void setDir(Directions  dir) {
-		if (dir != direction) {
-			lastPos = primitives[0]->position;
-		}
-		direction = dir;
 	}
 
 	void handelInput(GLFWwindow *Window) {
-		if (glfwGetKey(Window, GLFW_KEY_I) == GLFW_PRESS) {
-			this->setDir(UP);
+		if (glfwGetKey(Window, GLFW_KEY_I) == GLFW_PRESS && direction == STATIC) {
+			lastPos = primitives[0]->position;
+			direction = UP;
 		}
 		if (glfwGetKey(Window, GLFW_KEY_J) == GLFW_PRESS) {
-			this->setDir(LEFT);
+			primitives[0]->position -= vec3(moveStep, 0.f, 0.f);
 		}
 		if (glfwGetKey(Window, GLFW_KEY_L) == GLFW_PRESS) {
-			this->setDir(RIGHT);
+			primitives[0]->position += vec3(moveStep, 0.f, 0.f);
 		}	
 	}
 	~Hero();

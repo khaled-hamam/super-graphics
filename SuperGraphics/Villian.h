@@ -8,15 +8,17 @@ public:
 	float step = 0.01;
 	Directions dir = LEFT;
 
-	Villian() {
+	Villian(vec3 position = vec3(0.f), vec3 rotaion = vec3(0.f), vec3 scale = vec3(0.f)) {
 		primitives = {
-			new Quad(nullptr, vec3(7.f, 0.6f, 0.f), vec3(0.f), vec3(0.2f)),
+			new Quad(nullptr, vec3(0.f, 0.f, 0.f), vec3(0.f), vec3(1.f))
 		};
+		move(position);
+		rotate(rotaion);
+		changeScale(scale);
 	}
 
 	void update() {
 		if (count != 100 && dir == LEFT) {
-			cout << "left";
 			primitives[0]->position -= vec3(step, 0.f, 0.f);
 			count++;
 			if (count == 100) {
@@ -25,7 +27,6 @@ public:
 			}
 		}
 		else if (count != 100 && dir == RIGHT) {
-			cout << "right";
 			primitives[0]->position += vec3(step, 0.f, 0.f);
 			count++;
 			if (count == 100) {

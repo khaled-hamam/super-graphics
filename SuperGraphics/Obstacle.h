@@ -9,12 +9,13 @@ public:
 	int count = 0;
 	Directions dir = UP;
 	float step = 0.01;
-	Obstacle() {
+	Obstacle(vec3 position = vec3(0.f), vec3 rotaion = vec3(0.f), vec3 scale = vec3(0.f)) {
 		primitives = {
-		//	new Cube(ResourceManager::getTexture("box"), vec3(0.6, 1.0, 0.f), vec3(0.f, 0.f, 0.f), vec3(0.5f)),
-			new Cube(ResourceManager::getTexture("box1"), vec3(3.5, 1.0, 0.f), vec3(0.f, 0.f, 0.f), vec3(0.5f)),
-
+			new Cube(ResourceManager::getTexture("box1"), vec3(0.f, 0.f, 0.f), vec3(0.f, 0.f, 0.f), vec3(1.f))
 		};
+		move(position);
+		rotate(rotaion);
+		changeScale(scale);
 	}
 
 	void update() {

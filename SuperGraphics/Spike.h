@@ -4,15 +4,14 @@
 class Spike : public Model
 {
 public:
-	Spike() {
+	Spike(vec3 position = vec3(0.f), vec3 rotaion = vec3(0.f), vec3 scale = vec3(0.f)) {
 
-		
-
-		GLfloat x = 4;
-		while (x <= 5) {
-			primitives.push_back(new Pyramid(nullptr, vec3(x, 0.55f, 0.f), vec3(0.f, 0.f, 0.f), vec3(0.2f), vec3(BLUE)));
-			x+=0.1f;
-		}
+		primitives = {
+			new Pyramid(nullptr, vec3(0.f, 0.f, 0.f), vec3(0.f, 0.f, 0.f), vec3(1.f), vec3(SILVER))
+		};
+		move(position);
+		rotate(rotaion);
+		changeScale(scale);
 	}
 
 	void update(){

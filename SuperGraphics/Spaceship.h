@@ -4,31 +4,36 @@
 class Spaceship : public Model
 {
 public:
-	int ypos = 0, yneg = -1;
-	Spaceship() {
+	int count = 0;
+	Directions dir = UP;
+	float step = 0.01;
+	Spaceship(vec3 position = vec3(0.f), vec3 rotaion = vec3(0.f), vec3 scale = vec3(0.f)) {
 		primitives = {
-			new Quad(ResourceManager::getTexture("spaceship"), vec3(-1.f, 3.5f, 0.f), vec3(0.f), vec3(3.0f)),
+			new Quad(ResourceManager::getTexture("spaceship"), vec3(0.f, 0.f, 0.f), vec3(0.f), vec3(1.f))
 		};
+		move(position);
+		rotate(rotaion);
+		changeScale(scale);
+
 	}
 	void update() {
-		if (ypos < 100 && yneg == -1) {
-			primitives[0]->position += vec3(0.f, 0.01f, 0.f);
-			ypos++;
+		if (count != 50 && dir == UP) {
+			primitives[0]->position += vec3(0.f, step, 0.f);
+			count++;
+			if (count == 50) {
+				dir = DOWN;
+				count = 0;
+			}
 		}
-		if (ypos == 100) {
-			ypos = -1;
-			yneg = 0;
+		else if (count != 50 && dir == DOWN) {
+			primitives[0]->position -= vec3(0.0f, step, 0.f);
+			count++;
+			if (count == 50) {
+				dir = UP;
+				count = 0;
+			}
 		}
-		if (yneg<100 && ypos == -1) {
-			primitives[0]->position -= vec3(0.0f, 0.01f, 0.f);
-			yneg++;
 
-		}
-		if (yneg == 100)
-		{
-			yneg = -1;
-			ypos = 0;
-		}
 	}
 	~Spaceship();
 };

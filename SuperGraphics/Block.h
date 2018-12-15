@@ -4,17 +4,16 @@
 class Block : public Model
 {
 public:
-	Block() {
-		GLfloat x = -2;
-		while(x < 30){
-			GLfloat y = 0;
-			while (y > -3) {
-				primitives.push_back(new Cube(ResourceManager::getTexture("brownBlock"), vec3(x, y, 0.f), vec3(0.f, 0.f, 0.f), vec3(1.f)));
-				y--;
-			}
-			x++;
-		}
+	Block(vec3 position = vec3(0.f), vec3 rotaion = vec3(0.f), vec3 scale = vec3(0.f)) {
 	
+		primitives = 
+		{
+			new Cube(ResourceManager::getTexture("brownBlock"), vec3(0.f,0.f, 0.f), vec3(0.f, 0.f, 0.f), vec3(1.f))
+		};
+				
+		move(position);
+		rotate(rotaion);
+		changeScale(scale);
 	}
 	
 	void update(){}

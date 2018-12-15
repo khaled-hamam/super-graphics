@@ -2,16 +2,19 @@
 #pragma once
 #include "Model.h"
 #include "Primitives.h"
-class woodenBox : public Model
+class WoodenBox : public Model
 {
 public:
 	int count = 0;
 	float step = 0.01;
 	Directions dir = UP;
-	woodenBox() {
+	WoodenBox(vec3 position = vec3(0.f), vec3 rotaion = vec3(0.f), vec3 scale = vec3(0.f)) {
 		primitives = {
-			new Cube(ResourceManager::getTexture("box"), vec3(0.6, 1.0, 0.f), vec3(0.f, 0.f, 0.f), vec3(0.5f)),
+			new Cube(ResourceManager::getTexture("box"), vec3(0.f, 0.f, 0.f), vec3(0.f, 0.f, 0.f), vec3(1.f))
 		};
+		move(position);
+		rotate(rotaion);
+		changeScale(scale);
 	}
 
 	void update() {
@@ -32,6 +35,6 @@ public:
 			}
 		}
 	}
-	~woodenBox();
+	~WoodenBox();
 };
 
