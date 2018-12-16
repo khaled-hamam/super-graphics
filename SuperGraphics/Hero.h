@@ -22,18 +22,21 @@ public:
 			//this->position += vec3(0.f, jumpStep, 0.f);
 			this->move(vec3(0.f, jumpStep, 0.f));
 			if ( this->position.y - lastPos.y > 2.25) {
-				direction = DOWN;
-			}
-		}
-		else if (direction == DOWN) {
-			//primitives[0]->position -= vec3(0.f, jumpStep, 0.f);
-			this->move(vec3(0.f, -jumpStep, 0.f));
-			if ( this->position.y - lastPos.y  <= 0.f) {
-				this->position.y = lastPos.y;
-			//	primitives[0]->position.y = lastPos.y;
 				direction = STATIC;
 			}
 		}
+		if (direction != UP) {
+			this->move(vec3(0.f, -moveStep, 0.f));
+		}
+		//else if (direction == DOWN) {
+		//	//primitives[0]->position -= vec3(0.f, jumpStep, 0.f);
+		//	this->move(vec3(0.f, -jumpStep, 0.f));
+		//	if ( this->position.y - lastPos.y  <= 0.f) {
+		//		this->position.y = lastPos.y;
+		//	//	primitives[0]->position.y = lastPos.y;
+		//		direction = STATIC;
+		//	}
+		//}
 		//this->move(primitives[0]->position);
 	}
 
