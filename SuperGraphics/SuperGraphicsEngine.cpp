@@ -78,7 +78,7 @@ void SuperGraphicsEngine::start()
 {
     LevelGenerator generator;
 
-    hero = new Hero();
+    hero = new Hero(vec3(0.f, 1.f, 0.f));
     level = generator.generateLevel();
 
     double lastFrameDraw = 0;
@@ -92,7 +92,7 @@ void SuperGraphicsEngine::start()
 
         this->render();
         this->handleInput();
-
+        this->checkCollision();
         glfwSwapBuffers(window);
 		glfwPollEvents();
     } while(glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS &&
@@ -118,16 +118,30 @@ void SuperGraphicsEngine::render()
     }
 
 }
-bool SuperGraphicsEngine::collision(Hero *hero, Model*model) {
+
+void SuperGraphicsEngine::checkCollision() {
+    for (auto &model : level) {
+        if (areColliding(hero, model)) {
+            cout << "Collision Detected!" << endl;
+        }
+    }
+}
+
+bool SuperGraphicsEngine::areColliding(Hero *hero, Model *model) {
 	float distanceX = abs(model->position.x - hero->position.x);
-	float distanceY = abs(model->position.y = hero->position.y);
+	float distanceY = abs(model->position.y - hero->position.y);
+    float distanceZ = abs(model->position.z - hero->position.z);
+
 	float scaleX = (model->scale.x / 2) + (hero->scale.x / 2);
 	float scaleY = (model->scale.y / 2) + (hero->scale.y / 2);
-	if (distanceX <= scaleX && distanceY <= scaleY) {
+	float scaleZ = (model->scale.z / 2) + (hero->scale.z / 2);
+
+	if (distanceX < scaleX && distanceY < scaleY && distanceZ < scaleZ) {
 		return true;
 	}
 	return false;
 }
+
 void SuperGraphicsEngine::handleInput()
 { 
     float step = 0.05f;

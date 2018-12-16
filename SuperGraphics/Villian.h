@@ -10,7 +10,7 @@ public:
 
 	Villian(vec3 position = vec3(0.f), vec3 rotaion = vec3(0.f), vec3 scale = vec3(1.f)) {
 		primitives = {
-			new Quad(nullptr, vec3(1.f, 0.f, 0.f), vec3(0.f), vec3(0.f))
+			new Quad(nullptr, vec3(1.f, 0.f, 0.f), vec3(0.f), vec3(1.f))
 		};
 		move(position);
 		rotate(rotaion);
