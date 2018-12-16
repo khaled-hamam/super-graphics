@@ -22,7 +22,7 @@ public:
 	void move(vec3 position);
 	void rotate(vec3 rotation);
 	void changeScale(vec3 scale);
-    virtual void collision(Hero &hero);
+    virtual void collision(Hero *hero);
     virtual void update() = 0;
 };
 

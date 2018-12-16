@@ -122,7 +122,7 @@ void SuperGraphicsEngine::render()
 void SuperGraphicsEngine::checkCollision() {
     for (auto &model : level) {
         if (areColliding(hero, model)) {
-            cout << "Collision Detected!" << endl;
+            model->collision(hero);
         }
     }
 }

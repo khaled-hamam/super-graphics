@@ -34,7 +34,7 @@ void Model::changeScale(vec3 scale) {
 	}
 	this->scale *= scale;
 }
-void Model::collision(Hero & hero)
+void Model::collision(Hero *hero)
 {
 }
 Model::~Model()
