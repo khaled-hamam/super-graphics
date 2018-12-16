@@ -2,6 +2,7 @@
 
 Model::Model()
 {
+    scale = vec3(1.f);
 }
 
 void Model::render()
@@ -26,9 +27,9 @@ void Model::rotate(vec3 rotation) {
 }
 void Model::changeScale(vec3 scale) {
 	for (auto &primitive : primitives) {
-		primitive->scale += scale;
+		primitive->scale *= scale;
 	}
-	this->scale += scale;
+	this->scale *= scale;
 }
 Model::~Model()
 {

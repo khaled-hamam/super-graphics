@@ -4,7 +4,7 @@
 class Block : public Model
 {
 public:
-	Block(vec3 position = vec3(0.f), vec3 rotaion = vec3(0.f), vec3 scale = vec3(0.f)) {
+	Block(vec3 position = vec3(0.f), vec3 rotaion = vec3(0.f), vec3 scale = vec3(1.f)) {
 	
 		primitives = 
 		{

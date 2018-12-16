@@ -8,7 +8,7 @@ public:
 	int count = 0;
 	float step = 0.01;
 	Directions dir = UP;
-	WoodenBox(vec3 position = vec3(0.f), vec3 rotaion = vec3(0.f), vec3 scale = vec3(0.f)) {
+	WoodenBox(vec3 position = vec3(0.f), vec3 rotaion = vec3(0.f), vec3 scale = vec3(1.f)) {
 		primitives = {
 			new Cube(ResourceManager::getTexture("box"), vec3(0.f, 0.f, 0.f), vec3(0.f, 0.f, 0.f), vec3(1.f))
 		};

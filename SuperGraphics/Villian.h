@@ -8,7 +8,7 @@ public:
 	float step = 0.02;
 	Directions dir = LEFT;
 
-	Villian(vec3 position = vec3(0.f), vec3 rotaion = vec3(0.f), vec3 scale = vec3(0.f)) {
+	Villian(vec3 position = vec3(0.f), vec3 rotaion = vec3(0.f), vec3 scale = vec3(1.f)) {
 		primitives = {
 			new Quad(nullptr, vec3(1.f, 0.f, 0.f), vec3(0.f), vec3(0.f))
 		};
