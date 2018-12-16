@@ -121,25 +121,47 @@ void SuperGraphicsEngine::render()
 
 void SuperGraphicsEngine::checkCollision() {
     for (auto &model : level) {
-        if (areColliding(hero, model)) {
-            model->collision(hero);
+        CollisionResult result = areColliding(hero, model);
+        if (result.areColliding) {
+             model->collision(hero, result.direction, result.distance);
         }
     }
 }
 
-bool SuperGraphicsEngine::areColliding(Hero *hero, Model *model) {
-	float distanceX = abs(model->position.x - hero->position.x);
-	float distanceY = abs(model->position.y - hero->position.y);
-    float distanceZ = abs(model->position.z - hero->position.z);
+CollisionResult SuperGraphicsEngine::areColliding(Hero *hero, Model *model) {
+	float distanceX = hero->position.x - model->position.x;
+	float distanceY = hero->position.y - model->position.y;
+    float distanceZ = hero->position.z - model ->position.z;
 
 	float scaleX = (model->scale.x / 2) + (hero->scale.x / 2);
 	float scaleY = (model->scale.y / 2) + (hero->scale.y / 2);
 	float scaleZ = (model->scale.z / 2) + (hero->scale.z / 2);
 
-	if (distanceX < scaleX && distanceY < scaleY && distanceZ < scaleZ) {
-		return true;
+    CollisionResult result { false };
+	if (abs(distanceX) <= scaleX && abs(distanceY) <= scaleY && abs(distanceZ) <= scaleZ) {
+        result.areColliding = true;
+	    float wy = scaleX * distanceY;
+        float hx = scaleY * distanceX;
+
+        if (wy > hx) {
+            if (wy > -hx) {
+                result.direction = UP;
+                result.distance = scaleY - abs(distanceY);
+            } else {
+                result.direction = LEFT;
+                result.distance = scaleX - abs(distanceX);
+            }
+        } else {
+            if (wy > -hx) {
+                result.direction = RIGHT;
+                result.distance = scaleX - abs(distanceX);
+            } else {
+                result.direction = DOWN;
+                result.distance = scaleY - abs(distanceY);
+            }
+        }
 	}
-	return false;
+    return result;
 }
 
 void SuperGraphicsEngine::handleInput()

@@ -34,7 +34,7 @@ void Model::changeScale(vec3 scale) {
 	}
 	this->scale *= scale;
 }
-void Model::collision(Model *hero)
+void Model::collision(Model *hero, Directions direction, GLfloat distance)
 {
 }
 Model::~Model()

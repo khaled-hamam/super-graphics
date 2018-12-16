@@ -11,6 +11,7 @@
 #include "texture.h"
 #include "Skybox.h"
 #include "LevelGenerator.h"
+#include "CollisionResult.h"
 using namespace std;
 
 class SuperGraphicsEngine
@@ -32,7 +33,7 @@ private:
     void render();
     void handleInput();
     void checkCollision();
-	bool areColliding(Hero *hero, Model *model);
+	CollisionResult areColliding(Hero *hero, Model *model);
 
 public:
     SuperGraphicsEngine();

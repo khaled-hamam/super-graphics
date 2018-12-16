@@ -156,6 +156,7 @@
     <ClInclude Include="Block.h" />
     <ClInclude Include="Cat.h" />
     <ClInclude Include="Coin.h" />
+    <ClInclude Include="CollisionResult.h" />
     <ClInclude Include="colors.h" />
     <ClInclude Include="FPCamera.h" />
     <ClInclude Include="Hero.h" />

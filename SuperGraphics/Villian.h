@@ -35,5 +35,10 @@ public:
 			}
 		}
 	}
+
+    void collision(Model *h) {
+        Hero *hero = (Hero *)h;
+
+    }
 	~Villian();
 };
