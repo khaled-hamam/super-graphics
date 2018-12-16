@@ -35,7 +35,6 @@ public:
 			}
 		}
 		//this->move(primitives[0]->position);
-		cout << this->position.x << ' ' << this->position.y << endl;
 	}
 
 	void handelInput(GLFWwindow *Window) {

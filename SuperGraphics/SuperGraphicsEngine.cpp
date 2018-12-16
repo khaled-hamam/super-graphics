@@ -118,7 +118,16 @@ void SuperGraphicsEngine::render()
     }
 
 }
-
+bool SuperGraphicsEngine::collision(Hero *hero, Model*model) {
+	float distanceX = abs(model->position.x - hero->position.x);
+	float distanceY = abs(model->position.y = hero->position.y);
+	float scaleX = (model->scale.x / 2) + (hero->scale.x / 2);
+	float scaleY = (model->scale.y / 2) + (hero->scale.y / 2);
+	if (distanceX <= scaleX && distanceY <= scaleY) {
+		return true;
+	}
+	return false;
+}
 void SuperGraphicsEngine::handleInput()
 { 
     float step = 0.05f;

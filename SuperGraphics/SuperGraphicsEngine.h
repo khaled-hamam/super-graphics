@@ -31,6 +31,7 @@ private:
     void initializeGLOptions();
     void render();
     void handleInput();
+	bool collision(Hero*hero, Model*model);
 
 public:
     SuperGraphicsEngine();
