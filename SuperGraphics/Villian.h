@@ -40,5 +40,22 @@ public:
         Hero *hero = (Hero *)h;
 
     }
+	virtual void collision(Model *model, Directions directions, float distance) override {
+		cout << "villian" << directions << endl;
+		Hero *hero = (Hero *)model;
+		if (directions == UP) {
+			hero->move(vec3(0.f, distance, 0.f));
+			hero->direction = STATIC;
+		}
+		else if (directions == LEFT) {
+			hero->move(vec3(-distance, 0.f, 0.f));
+		}
+		else if (directions == RIGHT) {
+			hero->move(vec3(distance, 0.f, 0.f));
+		}
+		else if (directions == DOWN) {
+			hero->lives -= 1;
+		}
+	}
 	~Villian();
 };
