@@ -20,7 +20,7 @@ public:
 
 	void update() {
 		if (count!=50 &&dir==UP) {
-			primitives[0]->position += vec3(0.f, step, 0.f);
+			this->move(vec3(0.f, step, 0.f));
 			count++;
 			if (count == 50) {
 				dir = DOWN;
@@ -28,7 +28,7 @@ public:
 			}
 		}
 		else if (count!=50&&dir==DOWN) {
-			primitives[0]->position -= vec3(0.0f, step, 0.f);
+			this->move(vec3(0.f, -step, 0.f));
 			count++;
 			if (count == 50) {
 				dir = UP;

@@ -5,12 +5,12 @@ class Villian : public Model
 {
 public:
 	int count = 0;
-	float step = 0.01;
+	float step = 0.02;
 	Directions dir = LEFT;
 
 	Villian(vec3 position = vec3(0.f), vec3 rotaion = vec3(0.f), vec3 scale = vec3(0.f)) {
 		primitives = {
-			new Quad(nullptr, vec3(0.f, 0.f, 0.f), vec3(0.f), vec3(1.f))
+			new Quad(nullptr, vec3(1.f, 0.f, 0.f), vec3(0.f), vec3(0.f))
 		};
 		move(position);
 		rotate(rotaion);
@@ -19,7 +19,7 @@ public:
 
 	void update() {
 		if (count != 100 && dir == LEFT) {
-			primitives[0]->position -= vec3(step, 0.f, 0.f);
+			this->move(vec3(-step, 0.f, 0.f));
 			count++;
 			if (count == 100) {
 				dir = RIGHT;
@@ -27,7 +27,7 @@ public:
 			}
 		}
 		else if (count != 100 && dir == RIGHT) {
-			primitives[0]->position += vec3(step, 0.f, 0.f);
+			this->move(vec3(step, 0.f, 0.f));
 			count++;
 			if (count == 100) {
 				dir = LEFT;
