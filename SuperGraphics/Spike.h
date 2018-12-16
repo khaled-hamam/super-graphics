@@ -4,7 +4,7 @@
 class Spike : public Model
 {
 public:
-	Spike(vec3 position = vec3(0.f), vec3 rotaion = vec3(0.f), vec3 scale = vec3(0.f)) {
+	Spike(vec3 position = vec3(0.f), vec3 rotaion = vec3(0.f), vec3 scale = vec3(1.f)) {
 
 		primitives = {
 			new Pyramid(nullptr, vec3(0.f, 0.f, 0.f), vec3(0.f, 0.f, 0.f), vec3(1.f), vec3(SILVER))

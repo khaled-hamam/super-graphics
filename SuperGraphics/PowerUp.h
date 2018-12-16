@@ -4,7 +4,7 @@
 
 class PowerUp : public Model {
 public:
-	PowerUp(vec3 position = vec3(0.f), vec3 rotaion = vec3(0.f), vec3 scale = vec3(0.f)) {
+	PowerUp(vec3 position = vec3(0.f), vec3 rotaion = vec3(0.f), vec3 scale = vec3(1.f)) {
 		primitives = {
 			new Pyramid(nullptr,vec3(0.f, 0.f, 0.f),vec3(0.f, 0.f, 0.f), vec3(0.2f),vec3(GREEN)),
 			new Pyramid(nullptr,vec3(-0.1f, 0.1f, 0.f),vec3(0.f, 0.f, 180.f), vec3(0.05f),vec3(GREEN)),

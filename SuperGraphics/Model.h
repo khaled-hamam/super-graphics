@@ -16,7 +16,7 @@ public:
 
     Model();
     ~Model();
-    void render();
+    virtual void render();
 	void move(vec3 position);
 	void rotate(vec3 rotation);
 	void changeScale(vec3 scale);

@@ -53,6 +53,14 @@ void Primitive::render()
     }
 }
 
+void Primitive::render(Texture * texture)
+{
+    Texture *prevTexture = this->texture;
+    this->texture = texture;
+    this->render();
+    this->texture = prevTexture;
+}
+
 mat4 Primitive::getModelMatrix()
 {
     mat4 modelMatrix(1.0f);

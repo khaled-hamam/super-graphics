@@ -7,7 +7,7 @@ public:
 	int count = 0;
 	Directions dir = UP;
 	float step = 0.01;
-	Spaceship(vec3 position = vec3(0.f), vec3 rotaion = vec3(0.f), vec3 scale = vec3(0.f)) {
+	Spaceship(vec3 position = vec3(0.f), vec3 rotaion = vec3(0.f), vec3 scale = vec3(1.f)) {
 		primitives = {
 			new Quad(ResourceManager::getTexture("spaceship"), vec3(0.f, 0.f, 0.f), vec3(0.f), vec3(1.f))
 		};

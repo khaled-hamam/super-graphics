@@ -32,6 +32,7 @@ public:
     Primitive(Texture *texture, vec3 position, vec3 rotation, vec3 scale);
     void init();
     void render();
+    void render(Texture *texture);
     mat4 getModelMatrix();
     ~Primitive();
 };

@@ -8,7 +8,7 @@ public:
 	Directions direction = STATIC;
 	vec3 lastPos;
 	float jumpStep = 0.01f, moveStep = 0.01f;
-	Hero(vec3 position = vec3(0.f), vec3 rotaion = vec3(0.f), vec3 scale = vec3(0.f)) {
+	Hero(vec3 position = vec3(0.f), vec3 rotaion = vec3(0.f), vec3 scale = vec3(1.f)) {
 		primitives = {
 			new Quad(ResourceManager::getTexture("hero"), vec3(1.f, 0.f, 0.f), vec3(0.f), vec3(0.f)),
 		};

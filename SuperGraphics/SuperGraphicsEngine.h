@@ -10,7 +10,7 @@
 #include "colors.h"
 #include "texture.h"
 #include "Skybox.h"
-#include "LevelGenerator.h";
+#include "LevelGenerator.h"
 using namespace std;
 
 class SuperGraphicsEngine
