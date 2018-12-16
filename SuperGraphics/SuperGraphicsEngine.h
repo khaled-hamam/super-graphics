@@ -10,6 +10,7 @@
 #include "colors.h"
 #include "texture.h"
 #include "Skybox.h"
+#include "LevelGenerator.h";
 using namespace std;
 
 class SuperGraphicsEngine
@@ -20,6 +21,9 @@ private:
     GLuint windowHeight;
     GLuint programID;
     FPCamera mainCamera;
+
+    Hero *hero;
+    vector<Model*> level;
 
     void initialize();
     void initializeGLFW();

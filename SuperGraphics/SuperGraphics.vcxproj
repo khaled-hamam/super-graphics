@@ -159,8 +159,10 @@
     <ClInclude Include="colors.h" />
     <ClInclude Include="FPCamera.h" />
     <ClInclude Include="Hero.h" />
+    <ClInclude Include="LevelGenerator.h" />
     <ClInclude Include="libs.h" />
     <ClInclude Include="Model.h" />
+    <ClInclude Include="Models.h" />
     <ClInclude Include="Obstacle.h" />
     <ClInclude Include="PowerUp.h" />
     <ClInclude Include="Primitive.h" />
