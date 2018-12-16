@@ -20,4 +20,14 @@ public:
 		primitives[2]->rotation += vec3(0.f, -1.0f, 0.f);
 
 	}
+
+	virtual void collision(Model *model, Directions directions, float distance) override {
+		Hero *hero = (Hero*)model;
+		this->destroyed = true;
+
+		if (hero->lives < 3) {
+			hero->lives++;
+		}
+		//cout << hero->lives << endl;
+	}
 };

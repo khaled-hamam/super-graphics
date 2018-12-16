@@ -41,7 +41,7 @@ public:
 
     }
 	virtual void collision(Model *model, Directions directions, float distance) override {
-		cout << "villian" << directions << endl;
+		//cout << "villian" << directions << endl;
 		Hero *hero = (Hero *)model;
 		if (directions == UP) {
 			hero->move(vec3(0.f, distance, 0.f));

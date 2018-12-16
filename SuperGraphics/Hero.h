@@ -5,6 +5,7 @@
 class Hero : public Model
 {
 public:
+	int lives = 3;
 	Directions direction = STATIC;
 	vec3 lastPos;
 	float jumpStep = 0.1f, moveStep = 0.1f;
