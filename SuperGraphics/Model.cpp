@@ -7,6 +7,9 @@ Model::Model()
 
 void Model::render()
 {
+    if (destroyed)
+        return;
+
     for (auto &primitive : primitives) {
         primitive->render();
     }

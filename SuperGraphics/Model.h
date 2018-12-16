@@ -14,6 +14,7 @@ public:
 	vec3 position;
 	vec3 scale;
 	vec3 rotation;
+    bool destroyed = false;
 
     Model();
     ~Model();
