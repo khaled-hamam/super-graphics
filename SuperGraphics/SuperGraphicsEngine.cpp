@@ -138,7 +138,7 @@ CollisionResult SuperGraphicsEngine::areColliding(Hero *hero, Model *model) {
 	float scaleZ = (model->scale.z / 2) + (hero->scale.z / 2);
 
     CollisionResult result { false };
-	if (abs(distanceX) <= scaleX && abs(distanceY) <= scaleY && abs(distanceZ) <= scaleZ) {
+	if (abs(distanceX) <= scaleX && abs(distanceY) <= scaleY && hero->position.z == model->position.z) {
         result.areColliding = true;
 	    float wy = scaleX * distanceY;
         float hx = scaleY * distanceX;
