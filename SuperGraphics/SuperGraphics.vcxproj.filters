@@ -126,6 +126,12 @@
     <ClInclude Include="Villian.h">
       <Filter>Models</Filter>
     </ClInclude>
+    <ClInclude Include="LevelGenerator.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Models.h">
+      <Filter>Models</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\cubemap.fragmentshader">

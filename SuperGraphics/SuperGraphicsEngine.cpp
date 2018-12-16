@@ -74,31 +74,13 @@ void SuperGraphicsEngine::initializeGLOptions() {
     // glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 }
 
-//Cat *q;
-Skybox *skybox;
-Coin *coin;
-PowerUp *powerup;
-Hero *hero;
-Spaceship *spaceship;
-Block *block;
-Obstacle *block1;
-woodenBox *box;
-Spike *spikes;
-Villian *villian;
-Obstacle *o;
 void SuperGraphicsEngine::start()
 {
-   // q = new Cat();
-    skybox = new Skybox();
-	coin = new Coin();
-	powerup = new PowerUp();
-	hero = new Hero();
-	block = new Block();
-	spaceship = new Spaceship();
-	spikes = new Spike();
-	block1 = new Obstacle();
-	box = new woodenBox();
-	villian = new Villian();
+    LevelGenerator generator;
+
+    hero = new Hero();
+    level = generator.generateLevel();
+
     double lastFrameDraw = 0;
     do {
         double now = glfwGetTime();
@@ -124,22 +106,16 @@ void SuperGraphicsEngine::render()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
     ResourceManager::bindCamera(&mainCamera);
-    skybox->render();
-	coin->render();
-	coin->update();
-	powerup->render();
-	powerup->update();
+
+    for (auto &model : level) {
+        model->render();
+    }
+
 	hero->render();
 	hero->update();
-	block->render();
-	spaceship->render();
-	spaceship->update();
-	block1->render();
-	box->render();
-	box->update();
-	spikes->render();
-	villian->render();
-	villian->update();
+    for (auto &model : level) {
+        model->update();
+    }
 
 }
 
@@ -149,7 +125,7 @@ void SuperGraphicsEngine::handleInput()
     float angle = 1.f;
 	hero->handelInput(window);
 	if (glfwGetKey(this->window, GLFW_KEY_M) == GLFW_PRESS) {
-		hero->setDir(1);
+		//hero->setDir(1);
 	}
     if(glfwGetKey(this->window, GLFW_KEY_W) == GLFW_PRESS) {
         mainCamera.Walk(step);
