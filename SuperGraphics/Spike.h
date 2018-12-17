@@ -17,6 +17,24 @@ public:
 	void update(){
 		
 	}
+	virtual void collision(Model *model, Directions directions, float distance) override {
+
+		Hero *hero = (Hero*)model;
+		//glfwSetTime(0.f);
+
+		cout << hero->lives << endl;
+
+		if (directions == UP) {
+			hero->lives--;
+			if (hero->lives == 0){
+				return;
+			}
+		}
+
+		cout << "Lives: " <<  hero->lives << endl;
+
+		//cout << "time: " << time << endl;
+	}
 	~Spike();
 };
 
