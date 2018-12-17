@@ -40,14 +40,17 @@ public:
 		Hero *hero = (Hero *)model;
 		hero->lives -= 1;
 		if (directions == UP) {
-			hero->move(vec3(0.f, distance, 0.f));
-			hero->direction = STATIC;
+		/*	hero->move(vec3(0.f, distance, 0.f));
+			hero->direction = STATIC;*/
+			this->destroyed = true;
 		}
 		else if (directions == LEFT) {
 			hero->move(vec3(-distance, 0.f, 0.f));
+			hero->decreaseLives();
 		}
 		else if (directions == RIGHT) {
 			hero->move(vec3(distance, 0.f, 0.f));
+			hero->decreaseLives();
 		}
 	}
 

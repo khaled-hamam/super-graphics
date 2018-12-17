@@ -28,6 +28,5 @@ public:
 		if (hero->lives < 3) {
 			hero->lives++;
 		}
-		//cout << hero->lives << endl;
 	}
 };
