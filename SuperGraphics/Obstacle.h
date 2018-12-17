@@ -50,7 +50,8 @@ public:
 			hero->move(vec3(distance, 0.f, 0.f));
 		}
 		else if (directions == DOWN) {
-			hero->lives-=1;
+            hero->move(vec3(0.f, -distance, 0.f));
+            hero->direction = STATIC;
 		}
 	}
 	~Obstacle();

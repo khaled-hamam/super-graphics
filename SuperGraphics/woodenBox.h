@@ -47,6 +47,10 @@ public:
 		else if (directions == RIGHT) {
 			hero->move(vec3(distance, 0.f, 0.f));
 		}
+        else if (directions == DOWN) {
+            hero->move(vec3(0.f, -distance, 0.f));
+            hero->direction = STATIC;
+		}
 	}
 	~WoodenBox();
 };

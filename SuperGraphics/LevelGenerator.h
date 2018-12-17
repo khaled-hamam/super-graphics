@@ -10,6 +10,7 @@ using namespace glm;
 #define SPIKE_DIFFICULTY 20
 #define VILLAIN_DIFFICULTY 20
 #define POWERUP_DIFFICULTY 30
+#define COIN_DIFFICULTY 20
 #define FLYING_BLOCK_DIFFICULTY 20
 #define FLYING_BLOCK_TYPES 2
 
@@ -57,6 +58,17 @@ private:
         }
     }
 
+    void generateCoins(vector<Model*> &level, vec3 start, vec3 ending) {
+        for (GLfloat i = start.x; i <= ending.x; ++i) {
+            for (GLfloat k = start.z; k <= ending.z; ++k) {
+                int choose = rand() % COIN_DIFFICULTY;
+                if (!choose) {
+                    level.push_back(new Coin(vec3(i, ending.y + 1, k)));
+                }
+            }
+        }
+    }
+
     void generateFlyingBlocks(vector<Model*> &level, vec3 start, vec3 ending) {
         for (GLfloat i = start.x; i <= ending.x; ++i) {
             for (GLfloat k = start.z; k <= ending.z; ++k) {
@@ -79,7 +91,7 @@ private:
     }
 
 public:
-    vector<Model*> generateLevel(vec3 start = vec3(-2.f, -1.f, -1.f), vec3 ending = vec3(50.f, 0.f, 0.f)) {
+    vector<Model*> generateLevel(vec3 start = vec3(-2.f, -1.f, 0.f), vec3 ending = vec3(50.f, 0.f, 0.f)) {
         srand(time(NULL));
         vector<Model*> level;
 
@@ -94,6 +106,7 @@ public:
         this->generateVillains(level, start, ending);
         this->generatePowerups(level, start, ending);
         this->generateFlyingBlocks(level, start, ending);
+        this->generateCoins(level, start, ending);
 
         return level;
     }

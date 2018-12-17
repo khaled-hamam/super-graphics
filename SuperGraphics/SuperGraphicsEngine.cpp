@@ -90,8 +90,8 @@ void SuperGraphicsEngine::start()
         }
         lastFrameDraw = now;
 
-        this->render();
         this->handleInput();
+        this->render();
         this->checkCollision();
         glfwSwapBuffers(window);
 		glfwPollEvents();
@@ -123,7 +123,9 @@ void SuperGraphicsEngine::checkCollision() {
     for (auto &model : level) {
         CollisionResult result = areColliding(hero, model);
         if (result.areColliding) {
-             model->collision(hero, result.direction, result.distance);
+            cout << "Colliding with: " << typeid(*model).name() << endl;
+            hero->direction = STATIC;
+            model->collision(hero, result.direction, result.distance);
         }
     }
 }
@@ -138,7 +140,7 @@ CollisionResult SuperGraphicsEngine::areColliding(Hero *hero, Model *model) {
 	float scaleZ = (model->scale.z / 2) + (hero->scale.z / 2);
 
     CollisionResult result { false };
-	if (abs(distanceX) <= scaleX && abs(distanceY) <= scaleY && hero->position.z == model->position.z) {
+	if (abs(distanceX) < scaleX && abs(distanceY) < scaleY && hero->position.z == model->position.z) {
         result.areColliding = true;
 	    float wy = scaleX * distanceY;
         float hx = scaleY * distanceX;
@@ -169,9 +171,6 @@ void SuperGraphicsEngine::handleInput()
     float step = 0.05f;
     float angle = 1.f;
 	hero->handelInput(window);
-	if (glfwGetKey(this->window, GLFW_KEY_M) == GLFW_PRESS) {
-		//hero->setDir(1);
-	}
     if(glfwGetKey(this->window, GLFW_KEY_W) == GLFW_PRESS) {
         mainCamera.Walk(step);
     }

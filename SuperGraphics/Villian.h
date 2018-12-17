@@ -10,7 +10,7 @@ public:
 
 	Villian(vec3 position = vec3(0.f), vec3 rotaion = vec3(0.f), vec3 scale = vec3(1.f)) {
 		primitives = {
-			new Quad(nullptr, vec3(1.f, 0.f, 0.f), vec3(0.f), vec3(1.f))
+			new Quad(nullptr, vec3(0.f, 0.f, 0.f), vec3(0.f), vec3(1.f))
 		};
 		move(position);
 		rotate(rotaion);
@@ -36,12 +36,7 @@ public:
 		}
 	}
 
-    void collision(Model *h) {
-        Hero *hero = (Hero *)h;
-
-    }
 	virtual void collision(Model *model, Directions directions, float distance) override {
-		cout << "villian" << directions << endl;
 		Hero *hero = (Hero *)model;
 		hero->lives -= 1;
 		if (directions == UP) {
@@ -54,7 +49,7 @@ public:
 		else if (directions == RIGHT) {
 			hero->move(vec3(distance, 0.f, 0.f));
 		}
-		
 	}
+
 	~Villian();
 };

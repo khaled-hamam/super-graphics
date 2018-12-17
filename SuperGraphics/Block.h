@@ -20,7 +20,16 @@ public:
 	virtual void collision(Model *model, Directions directions, float distance) override {
 		Hero *hero = (Hero *)model;
 		if (directions == UP) {
-			hero->move(vec3(0.f, distance, 0.f));
+			hero->move(vec3(0.f, distance + 0.001f, 0.f));
+		}
+        else if (directions == LEFT) {
+			hero->move(vec3(-distance, 0.f, 0.f));
+		}
+		else if (directions == RIGHT) {
+			hero->move(vec3(distance, 0.f, 0.f));
+		}
+		else if (directions == DOWN) {
+            hero->move(vec3(0.f, -distance, 0.f));
 		}
 	}
 	~Block();
