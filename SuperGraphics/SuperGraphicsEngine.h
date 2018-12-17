@@ -23,6 +23,7 @@ private:
     GLuint programID;
     FPCamera mainCamera;
 
+    Skybox *skybox;
     Hero *hero;
     vector<Model*> level;
 

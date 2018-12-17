@@ -78,6 +78,7 @@ void SuperGraphicsEngine::start()
 {
     LevelGenerator generator;
 
+    skybox = new Skybox();
     hero = new Hero(vec3(0.f, 1.f, 0.f));
     level = generator.generateLevel();
 
@@ -112,6 +113,8 @@ void SuperGraphicsEngine::render()
     }
 
 	hero->render();
+    skybox->render();
+
 	hero->update();
     for (auto &model : level) {
         model->update();
