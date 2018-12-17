@@ -9,7 +9,6 @@ public:
 	Directions direction = STATIC;
 	vec3 lastPos;
 	float jumpStep = 0.1f, moveStep = 0.1f;
-    int lives = 3;
     double lastHitTime = 0;
 
     bool isImmune() {
