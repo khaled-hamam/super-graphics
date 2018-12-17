@@ -6,13 +6,15 @@ class Hero : public Model
 {
 public:
 	int lives = 3;
+	int coins = 0;
 	Directions direction = STATIC;
 	vec3 lastPos;
 	float jumpStep = 0.1f, moveStep = 0.1f;
     double lastHitTime = 0;
 
     bool isImmune() {
-        return glfwGetTime() - lastHitTime >= 3000;
+		
+        return glfwGetTime() - lastHitTime <= 3;
     }
 
     void decreaseLives() {

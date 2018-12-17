@@ -15,4 +15,11 @@ public:
 	void update() {
 		primitives[0]->rotation += vec3(0.f, 1.f, 0.f);
 	}
+	virtual void collision(Model *model, Directions directions, float distance) override {
+		Hero *hero = (Hero*)model;
+		this->destroyed = true;
+
+		hero->coins++;
+		cout << hero->coins << endl;
+	}
 };

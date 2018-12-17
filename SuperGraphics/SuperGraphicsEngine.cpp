@@ -125,8 +125,8 @@ void SuperGraphicsEngine::render()
 void SuperGraphicsEngine::checkCollision() {
     for (auto &model : level) {
         CollisionResult result = areColliding(hero, model);
-        if (result.areColliding) {
-            cout << "Colliding with: " << typeid(*model).name() << endl;
+        if (result.areColliding && !model->destroyed) {
+           // cout << "Colliding with: " << typeid(*model).name() << endl;
             hero->direction = STATIC;
             model->collision(hero, result.direction, result.distance);
         }
