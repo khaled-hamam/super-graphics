@@ -135,6 +135,12 @@
     <ClInclude Include="CollisionResult.h">
       <Filter>Utils</Filter>
     </ClInclude>
+    <ClInclude Include="normals.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="directions.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\cubemap.fragmentshader">

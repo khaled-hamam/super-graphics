@@ -16,7 +16,7 @@ public:
     static void initializeResources();
     static Shader* getShader(string shaderName);
     static Texture* getTexture(string textureName);
-    static void bindCamera(FPCamera *activeCamera);
+    static void bindCamera(FPCamera *activeCamera, glm::vec3 heroPositon);
     static Shader* getAppropriateShader(Texture *texture);
     ~ResourceManager();
 };

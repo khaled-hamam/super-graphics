@@ -122,3 +122,10 @@ void Shader::setMat4(string matrix, const GLfloat * value)
     GLuint matrixID = glGetUniformLocation(this->shaderID, matrix.c_str());
     glUniformMatrix4fv(matrixID, 1, GL_FALSE, value);
 }
+
+void Shader::setVec3(string vecName, const GLfloat * value)
+{
+    this->useShader();
+    GLuint vecID = glGetUniformLocation(this->shaderID, vecName.c_str());
+    glUniform3fv(vecID, 1, value);
+}

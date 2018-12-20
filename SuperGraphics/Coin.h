@@ -20,6 +20,5 @@ public:
 		this->destroyed = true;
 
 		hero->coins++;
-		cout << hero->coins << endl;
 	}
 };

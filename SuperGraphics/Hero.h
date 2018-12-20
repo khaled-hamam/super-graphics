@@ -13,7 +13,6 @@ public:
     double lastHitTime = 0;
 
     bool isImmune() {
-		
         return glfwGetTime() - lastHitTime <= 3;
     }
 
@@ -26,7 +25,7 @@ public:
 
 	Hero(vec3 position = vec3(0.f), vec3 rotaion = vec3(0.f), vec3 scale = vec3(1.f)) {
 		primitives = {
-			new Quad(ResourceManager::getTexture("hero"), vec3(0.f, 0.f, 0.f), vec3(0.f), vec3(1.f)),
+			new Quad(ResourceManager::getTexture("hero"), vec3(0.f, 0.f, 0.f), vec3(0.f, 0.f, 0.f), vec3(1.f)),
 		};
 		move(position);
 		rotate(rotaion);
@@ -61,5 +60,17 @@ public:
 			this->move(vec3(moveStep, 0.f, 0.f));
 		}	
 	}
+
+    void printState() {
+        //system("cls");
+        cout << string(10, '*') << endl;
+        cout << "Hero State:\n"
+            << "Lives: " << lives << endl
+            << "Coins: " << coins << endl;
+
+        cout << "Game State: ";
+        (lives <= 0) ? cout << "Game Over\n" : cout << "Game Running\n";
+        cout << string(10, '*') << endl;
+    }
 	~Hero();
 };

@@ -18,22 +18,24 @@ public:
 	}
 
 	void update() {
-		if (count != 100 && dir == LEFT) {
-			this->move(vec3(-step, 0.f, 0.f));
-			count++;
-			if (count == 100) {
-				dir = RIGHT;
-				count = 0;
-			}
-		}
-		else if (count != 100 && dir == RIGHT) {
-			this->move(vec3(step, 0.f, 0.f));
-			count++;
-			if (count == 100) {
-				dir = LEFT;
-				count = 0;
-			}
-		}
+		//if (count != 100 && dir == LEFT) {
+		//	this->move(vec3(-step, 0.f, 0.f));
+		//	count++;
+		//	if (count == 100) {
+		//		dir = RIGHT;
+		//		count = 0;
+		//	}
+		//}
+		//else if (count != 100 && dir == RIGHT) {
+		//	this->move(vec3(step, 0.f, 0.f));
+		//	count++;
+		//	if (count == 100) {
+		//		dir = LEFT;
+		//		count = 0;
+		//	}
+		//}
+
+        this->move(vec3(0.02 * sin(glfwGetTime()), 0.f, 0.f));
 	}
 
 	virtual void collision(Model *model, Directions directions, float distance) override {

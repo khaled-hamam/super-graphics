@@ -69,8 +69,8 @@ void SuperGraphicsEngine::initializeGLOptions() {
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_TEXTURE_CUBE_MAP_SEAMLESS);
 
-    //glEnable(GL_CULL_FACE);
-    //glCullFace(GL_FRONT);  
+/*    glEnable(GL_CULL_FACE);
+    glCullFace(GL_FRONT); */ 
     // glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 }
 
@@ -106,7 +106,8 @@ void SuperGraphicsEngine::render()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
-    ResourceManager::bindCamera(&mainCamera);
+    
+    ResourceManager::bindCamera(&mainCamera, hero->position);
 
     for (auto &model : level) {
         model->render();
@@ -120,6 +121,7 @@ void SuperGraphicsEngine::render()
         model->update();
     }
 
+    //hero->printState();
 }
 
 void SuperGraphicsEngine::checkCollision() {

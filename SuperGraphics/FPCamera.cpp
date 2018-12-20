@@ -2,8 +2,8 @@
 
 FPCamera::FPCamera(void)
 {
-	this->Reset(0, 0, 2, 
-		0, 0, 0, 
+	this->Reset(-5, 1.5, -.5, 
+		1, 0.f, -.5, 
 		0, 1, 0);
 
 	SetPerspectiveProjection(45.0f, 1200.0f / 750.0f, 0.1f, 100.0f);
@@ -58,6 +58,16 @@ glm::mat4 FPCamera::GetProjectionMatrix()
 	return mProjectionMatrix;
 }
 
+glm::vec3 FPCamera::getPosition()
+{
+    return this->mPosition;
+}
+
+void FPCamera::setPosition(glm::vec3 position)
+{
+    mPosition = position;
+}
+
 void FPCamera::SetPerspectiveProjection(float FOV, float aspectRatio, float near, float far)
 {
 	mProjectionMatrix = glm::perspective(FOV,aspectRatio,near,far);
@@ -97,7 +107,7 @@ void FPCamera::Roll(float angleDegrees)
 
 void FPCamera::Walk(float dist)
 {
-	mPosition -= dist * mDirection; // bmshy 3ks 2ldirection 3shan 2l Z n7yty.
+	 mPosition -= dist * mDirection; // bmshy 3ks 2ldirection 3shan 2l Z n7yty.
 }
 
 void FPCamera::Strafe(float dist)
@@ -109,8 +119,3 @@ void FPCamera::Fly(float dist)
 {
 	mPosition += dist * mUp;
 }
-
-
-
-
-
