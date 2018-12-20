@@ -23,5 +23,7 @@ public:
     static void bindCamera(FPCamera *activeCamera, glm::vec3 heroPositon);
 	static ISoundEngine* getSoundEngine(string engineName);
     static Shader* getAppropriateShader(Texture *texture);
+	static void playSoundEffect(char *);
+	static void playBackgroundMusic();
     ~ResourceManager();
 };

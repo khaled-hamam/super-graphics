@@ -20,8 +20,8 @@ public:
         if (isImmune() == false) {
             lastHitTime = glfwGetTime();
             lives -= 1;
-			ResourceManager::getSoundEngine("effectsEngine")->play2D("Audio/crash.wav", GL_FALSE);
-        }
+			ResourceManager::playSoundEffect("Audio/crash.wav");
+		}
     }
 
 	Hero(vec3 position = vec3(0.f), vec3 rotaion = vec3(0.f), vec3 scale = vec3(1.f)) {
@@ -53,7 +53,7 @@ public:
 		if (glfwGetKey(Window, GLFW_KEY_I) == GLFW_PRESS && direction == STATIC) {
 			lastPos = this->position;
 			direction = UP;
-			ResourceManager::getSoundEngine("effectsEngine")->play2D("Audio/jump.ogg", GL_FALSE);
+			ResourceManager::playSoundEffect("Audio/jump.ogg");
 		}
 		if (glfwGetKey(Window, GLFW_KEY_J) == GLFW_PRESS) {
 			this->move(vec3(-moveStep, 0.f, 0.f));

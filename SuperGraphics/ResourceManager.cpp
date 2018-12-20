@@ -92,9 +92,9 @@ ISoundEngine * ResourceManager::getSoundEngine(string engineName)
 
 void ResourceManager::bindCamera(FPCamera * activeCamera, glm::vec3 heroPositon)
 {
-    glm::vec3 cameraPosition = glm::vec3(heroPositon.x - 5.f, heroPositon.y + 1.5, -0.5f);
+    /*glm::vec3 cameraPosition = glm::vec3(heroPositon.x - 5.f, heroPositon.y + 1.5, -0.5f);
     activeCamera->setPosition(cameraPosition);
-
+*/
     for (auto &shader : shaders) {
         shader.second->setMat4("ProjectionMatrix", &activeCamera->GetProjectionMatrix()[0][0]);
         shader.second->setMat4("ViewMatrix", &activeCamera->GetViewMatrix()[0][0]);
@@ -111,6 +111,19 @@ Shader * ResourceManager::getAppropriateShader(Texture * texture)
     } else {
         return ResourceManager::getShader("programShader");
     }
+}
+
+void ResourceManager::playSoundEffect(char* audioName)
+{
+	bool isPlaying = ResourceManager::getSoundEngine("effectsEngine")->isCurrentlyPlaying(audioName);
+	if (isPlaying == false) {
+		ResourceManager::getSoundEngine("effectsEngine")->play2D(audioName, GL_FALSE);
+	}
+}
+
+void ResourceManager::playBackgroundMusic()
+{
+	ResourceManager::getSoundEngine("backgroundEngine")->play2D("Audio/getout.ogg", GL_TRUE);
 }
 
 ResourceManager::~ResourceManager()
