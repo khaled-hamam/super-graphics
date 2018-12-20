@@ -1,4 +1,5 @@
 #pragma once
+#include <irrKlang/irrKlang.h>
 #include <gl/glew.h>
 #include <gl/glfw3.h>
 #include <glm/glm.hpp>
@@ -12,7 +13,9 @@
 #include "Skybox.h"
 #include "LevelGenerator.h"
 #include "CollisionResult.h"
+using namespace irrklang;
 using namespace std;
+
 
 class SuperGraphicsEngine
 {

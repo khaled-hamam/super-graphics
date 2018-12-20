@@ -2,6 +2,7 @@
 
 unordered_map<string, Shader*> ResourceManager::shaders;
 unordered_map<string, Texture*> ResourceManager::textures;
+unordered_map<string, ISoundEngine*> ResourceManager::soundEngines;
 
 void ResourceManager::initializeShaders()
 {
@@ -57,10 +58,21 @@ void ResourceManager::initializeTextures()
 	
 }
 
+void ResourceManager::initializeSoundEngines()
+{
+	ResourceManager::soundEngines["backgroundEngine"] = createIrrKlangDevice();
+	ResourceManager::soundEngines["effectsEngine"] = createIrrKlangDevice();
+
+	// Initialize Sound Options
+	ResourceManager::soundEngines["backgroundEngine"]->setSoundVolume(0.3f);
+	ResourceManager::soundEngines["effectsEngine"]->setSoundVolume(1.f);
+}
+
 void ResourceManager::initializeResources()
 {
     initializeShaders();
     initializeTextures();
+	initializeSoundEngines();
 }
 
 Shader * ResourceManager::getShader(string shaderName)
@@ -71,6 +83,11 @@ Shader * ResourceManager::getShader(string shaderName)
 Texture * ResourceManager::getTexture(string textureName)
 {
     return ResourceManager::textures[textureName];
+}
+
+ISoundEngine * ResourceManager::getSoundEngine(string engineName)
+{
+	return ResourceManager::soundEngines[engineName];
 }
 
 void ResourceManager::bindCamera(FPCamera * activeCamera)

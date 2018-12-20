@@ -16,11 +16,12 @@ public:
 		
         return glfwGetTime() - lastHitTime <= 3;
     }
-
+	
     void decreaseLives() {
         if (isImmune() == false) {
             lastHitTime = glfwGetTime();
             lives -= 1;
+			ResourceManager::getSoundEngine("effectsEngine")->play2D("Audio/crash.wav", GL_FALSE);
         }
     }
 
@@ -53,6 +54,7 @@ public:
 		if (glfwGetKey(Window, GLFW_KEY_I) == GLFW_PRESS && direction == STATIC) {
 			lastPos = this->position;
 			direction = UP;
+			ResourceManager::getSoundEngine("effectsEngine")->play2D("Audio/jump.ogg", GL_FALSE);
 		}
 		if (glfwGetKey(Window, GLFW_KEY_J) == GLFW_PRESS) {
 			this->move(vec3(-moveStep, 0.f, 0.f));
