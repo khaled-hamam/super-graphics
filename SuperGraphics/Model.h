@@ -1,9 +1,11 @@
 #pragma once
+#include <irrKlang/irrKlang.h>
 #include <vector>
 #include "Primitives.h"
 #include "ResourceManager.h"
 #include "directions.h"
 using namespace std;
+using namespace irrklang;
 
 class Model
 {

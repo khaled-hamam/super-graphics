@@ -18,8 +18,8 @@ public:
 		primitives[0]->rotation += vec3(0.f, 1.0f, 0.f);
 		primitives[1]->rotation += vec3(0.f, -1.0f, 0.f);
 		primitives[2]->rotation += vec3(0.f, -1.0f, 0.f);
-
 	}
+
 
 	virtual void collision(Model *model, Directions directions, float distance) override {
 		Hero *hero = (Hero*)model;
@@ -28,5 +28,6 @@ public:
 		if (hero->lives < 3) {
 			hero->lives++;
 		}
+		ResourceManager::getSoundEngine("effectsEngine")->play2D("Audio/powerup.wav", GL_FALSE);
 	}
 };

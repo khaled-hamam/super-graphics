@@ -38,13 +38,16 @@ public:
         this->move(vec3(0.02 * sin(glfwGetTime()), 0.f, 0.f));
 	}
 
+
 	virtual void collision(Model *model, Directions directions, float distance) override {
+		
 		Hero *hero = (Hero *)model;
 		hero->lives -= 1;
 		if (directions == UP) {
 		/*	hero->move(vec3(0.f, distance, 0.f));
 			hero->direction = STATIC;*/
 			this->destroyed = true;
+			ResourceManager::getSoundEngine("effectsEngine")->play2D("Audio/killenemy.wav" ,GL_FALSE);
 		}
 		else if (directions == LEFT) {
 			hero->move(vec3(-distance, 0.f, 0.f));
@@ -54,6 +57,7 @@ public:
 			hero->move(vec3(distance, 0.f, 0.f));
 			hero->decreaseLives();
 		}
+
 	}
 
 	~Villian();
