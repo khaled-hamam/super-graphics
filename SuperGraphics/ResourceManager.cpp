@@ -92,8 +92,8 @@ ISoundEngine * ResourceManager::getSoundEngine(string engineName)
 
 void ResourceManager::bindCamera(FPCamera * activeCamera, glm::vec3 heroPositon)
 {
-    //glm::vec3 cameraPosition = glm::vec3(heroPositon.x - 5.f, heroPositon.y + 1.5, -0.5f);
-    //activeCamera->setPosition(cameraPosition);
+    glm::vec3 cameraPosition = glm::vec3(heroPositon.x - 5.f, heroPositon.y + 1.5, -0.5f);
+    activeCamera->setPosition(cameraPosition);
 
     for (auto &shader : shaders) {
         shader.second->setMat4("ProjectionMatrix", &activeCamera->GetProjectionMatrix()[0][0]);

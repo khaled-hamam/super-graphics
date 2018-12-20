@@ -19,7 +19,8 @@ public:
 	}
 	virtual void collision(Model *model, Directions directions, float distance) override {
 		Hero *hero = (Hero*)model;
-		hero->decreaseLives();
+        if (distance > 0.3f)
+		    hero->decreaseLives();
 	}
 	~Spike();
 };

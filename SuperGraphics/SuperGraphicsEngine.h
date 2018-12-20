@@ -24,8 +24,9 @@ private:
     GLuint windowWidth;
     GLuint windowHeight;
     GLuint programID;
+    
     FPCamera mainCamera;
-
+    GLfloat drawDistance = 25.f;
     Skybox *skybox;
     Hero *hero;
     vector<Model*> level;

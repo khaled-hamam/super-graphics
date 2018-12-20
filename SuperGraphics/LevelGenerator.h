@@ -91,7 +91,7 @@ private:
     }
 
 public:
-    vector<Model*> generateLevel(vec3 start = vec3(-2.f, -1.f, -1.f), vec3 ending = vec3(50.f, 0.f, 0.f)) {
+    vector<Model*> generateLevel(vec3 start = vec3(-2.f, -1.f, -1.f), vec3 ending = vec3(300.f, 0.f, 0.f)) {
         srand(time(NULL));
         vector<Model*> level;
 

@@ -112,7 +112,14 @@ void SuperGraphicsEngine::render()
     ResourceManager::bindCamera(&mainCamera, hero->position);
 
     for (auto &model : level) {
-        model->render();
+        double distanceFromHero = sqrt(
+            pow(hero->position.x - model->position.x, 2) + 
+            pow(hero->position.y - model->position.y, 2) +
+            pow(hero->position.z - model->position.z, 2)
+        );
+
+        if (distanceFromHero < drawDistance)
+            model->render();
     }
 
 	hero->render();
@@ -130,7 +137,6 @@ void SuperGraphicsEngine::checkCollision() {
     for (auto &model : level) {
         CollisionResult result = areColliding(hero, model);
         if (result.areColliding && !model->destroyed) {
-           // cout << "Colliding with: " << typeid(*model).name() << endl;
             hero->direction = STATIC;
             model->collision(hero, result.direction, result.distance);
         }
