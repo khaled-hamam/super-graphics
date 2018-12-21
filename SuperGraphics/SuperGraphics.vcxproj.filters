@@ -28,6 +28,9 @@
     <Filter Include="Shader\shaders">
       <UniqueIdentifier>{35341142-33f4-4c80-b0b7-b633e917cf19}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Light">
+      <UniqueIdentifier>{264c9e04-6af2-4e9a-ae08-ba8d512931e0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="shader.cpp">
@@ -54,6 +57,9 @@
     </ClCompile>
     <ClCompile Include="stb_image.cpp">
       <Filter>Texture\TextureLoader</Filter>
+    </ClCompile>
+    <ClCompile Include="Light.cpp">
+      <Filter>Light</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -140,6 +146,12 @@
     </ClInclude>
     <ClInclude Include="directions.h">
       <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Light.h">
+      <Filter>Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Lights.h">
+      <Filter>Light</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

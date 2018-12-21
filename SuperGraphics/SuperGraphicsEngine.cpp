@@ -9,6 +9,7 @@
 #include "Obstacle.h"
 #include "woodenBox.h"
 #include "Villian.h"
+#include "Lights.h"
 SuperGraphicsEngine::SuperGraphicsEngine()
 {
     this->windowWidth = 1200;
@@ -74,6 +75,9 @@ void SuperGraphicsEngine::initializeGLOptions() {
     // glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 }
 
+Light *sun;
+Light *point;
+
 void SuperGraphicsEngine::start()
 {
     LevelGenerator generator;
@@ -83,7 +87,8 @@ void SuperGraphicsEngine::start()
     level = generator.generateLevel();
 
 	ResourceManager::getSoundEngine("backgroundEngine")->play2D("Audio/getout.ogg", GL_TRUE);
-
+   // sun = new Directional();
+    point = new PointLight();
     double lastFrameDraw = 0;
     do {
         double now = glfwGetTime();
@@ -92,7 +97,7 @@ void SuperGraphicsEngine::start()
             continue;
         }
         lastFrameDraw = now;
-
+        
         this->handleInput();
         this->render();
         this->checkCollision();
@@ -110,7 +115,8 @@ void SuperGraphicsEngine::render()
     
     
     ResourceManager::bindCamera(&mainCamera, hero->position);
-
+    ((PointLight *)point)->position = hero->position;
+    point->use();
     for (auto &model : level) {
         double distanceFromHero = sqrt(
             pow(hero->position.x - model->position.x, 2) + 

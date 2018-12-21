@@ -13,4 +13,5 @@ public:
     void useShader();
     void setMat4(string matrix, const GLfloat *value);
     void setVec3(string vecName, const GLfloat *value);
+    void setFloat(string floatName, const GLfloat *value);
 };

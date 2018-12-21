@@ -129,3 +129,10 @@ void Shader::setVec3(string vecName, const GLfloat * value)
     GLuint vecID = glGetUniformLocation(this->shaderID, vecName.c_str());
     glUniform3fv(vecID, 1, value);
 }
+
+void Shader::setFloat(string floatName, const GLfloat * value)
+{
+    this->useShader();
+    GLuint vecID = glGetUniformLocation(this->shaderID, floatName.c_str());
+    glUniform1fv(vecID, 1, value);
+}
