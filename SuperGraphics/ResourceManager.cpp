@@ -86,6 +86,19 @@ Shader * ResourceManager::getAppropriateShader(Texture * texture)
     }
 }
 
+void ResourceManager::playSoundEffect(char* audioName)
+{
+	bool isPlaying = ResourceManager::getSoundEngine("effectsEngine")->isCurrentlyPlaying(audioName);
+	if (isPlaying == false) {
+		ResourceManager::getSoundEngine("effectsEngine")->play2D(audioName, GL_FALSE);
+	}
+}
+
+void ResourceManager::playBackgroundMusic()
+{
+	ResourceManager::getSoundEngine("backgroundEngine")->play2D("Audio/getout.ogg", GL_TRUE);
+}
+
 ResourceManager::~ResourceManager()
 {
     for (auto &shader : shaders) {

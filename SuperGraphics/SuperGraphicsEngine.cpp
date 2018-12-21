@@ -86,9 +86,10 @@ void SuperGraphicsEngine::start()
     hero = new Hero(vec3(0.f, 1.f, 0.f));
     level = generator.generateLevel();
 
-	ResourceManager::getSoundEngine("backgroundEngine")->play2D("Audio/getout.ogg", GL_TRUE);
    // sun = new Directional();
     point = new PointLight();
+	ResourceManager::playBackgroundMusic();
+
     double lastFrameDraw = 0;
     do {
         double now = glfwGetTime();

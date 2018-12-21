@@ -28,6 +28,7 @@ public:
 		if (hero->lives < 3) {
 			hero->lives++;
 		}
-		ResourceManager::getSoundEngine("effectsEngine")->play2D("Audio/powerup.wav", GL_FALSE);
+
+		ResourceManager::playSoundEffect("Audio/powerup.wav");
 	}
 };

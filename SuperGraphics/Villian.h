@@ -47,7 +47,7 @@ public:
 		/*	hero->move(vec3(0.f, distance, 0.f));
 			hero->direction = STATIC;*/
 			this->destroyed = true;
-			ResourceManager::getSoundEngine("effectsEngine")->play2D("Audio/killenemy.wav" ,GL_FALSE);
+			ResourceManager::playSoundEffect("Audio/killenemy.wav");
 		}
 		else if (directions == LEFT) {
 			hero->move(vec3(-distance, 0.f, 0.f));

@@ -20,6 +20,6 @@ public:
 		this->destroyed = true;
 
 		hero->coins++;
-		ResourceManager::getSoundEngine("effectsEngine")->play2D("Audio/pickedcoin.wav", GL_FALSE);
+		ResourceManager::playSoundEffect("Audio/pickedcoin.wav");
 	}
 };
