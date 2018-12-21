@@ -84,15 +84,16 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeaderFile />
+      <PrecompiledHeaderOutputFile />
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32.lib;irrKlang.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32.lib;irrKlang.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -151,6 +152,7 @@
     <ClCompile Include="shader.cpp" />
     <ClCompile Include="stb_image.cpp" />
     <ClCompile Include="SuperGraphicsEngine.cpp" />
+    <ClCompile Include="TextRenderer.cpp" />
     <ClCompile Include="texture.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -173,6 +175,7 @@
     <ClInclude Include="PowerUp.h" />
     <ClInclude Include="Primitive.h" />
     <ClInclude Include="Primitives.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="shader.hpp" />
     <ClInclude Include="Skybox.h" />
@@ -180,6 +183,7 @@
     <ClInclude Include="Spike.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="SuperGraphicsEngine.h" />
+    <ClInclude Include="TextRenderer.h" />
     <ClInclude Include="texture.h" />
     <ClInclude Include="Vertex.h" />
     <ClInclude Include="Villian.h" />
@@ -192,6 +196,11 @@
     <None Include="shaders\skybox.fragmentshader" />
     <None Include="shaders\skybox.vertexshader" />
     <None Include="shaders\VertexShader.vertexshader" />
+    <None Include="text.fragmentshader" />
+    <None Include="text.vertexshader" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="SuperGraphics.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

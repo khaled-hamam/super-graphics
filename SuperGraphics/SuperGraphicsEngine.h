@@ -14,6 +14,7 @@
 #include "Skybox.h"
 #include "LevelGenerator.h"
 #include "CollisionResult.h"
+#include "TextRenderer.h"
 using namespace irrklang;
 using namespace std;
 
@@ -26,6 +27,7 @@ private:
     GLuint windowHeight;
     GLuint programID;
     
+	TextRenderer *textEngine;
     FPCamera mainCamera;
     GLfloat drawDistance = 25.f;
     Skybox *skybox;

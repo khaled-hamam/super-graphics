@@ -88,7 +88,9 @@ void SuperGraphicsEngine::start()
 
    // sun = new Directional();
     point = new PointLight();
-	ResourceManager::playBackgroundMusic();
+	textEngine = new TextRenderer(this->windowWidth, this->windowHeight);
+	textEngine->loadFont("Assets/Fonts/OCRAEXT.TTF", 100);
+	//ResourceManager::playBackgroundMusic();
 
     double lastFrameDraw = 0;
     do {
@@ -114,7 +116,7 @@ void SuperGraphicsEngine::render()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
-    
+	textEngine->renderText("GAME OVER", 600.f, 375.0f, 1.0f, glm::vec3(RED));
     ResourceManager::bindCamera(&mainCamera, hero->position);
     ((PointLight *)point)->position = hero->position;
     point->use();

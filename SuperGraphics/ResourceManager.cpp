@@ -6,8 +6,9 @@ unordered_map<string, ISoundEngine*> ResourceManager::soundEngines;
 
 void ResourceManager::initializeShaders()
 {
-    shaders["programShader"] = new Shader("shaders/VertexShader.vertexshader", "shaders/FragmentShader.fragmentshader");
-    shaders["cubemapShader"] = new Shader("shaders/cubemap.vertexshader", "shaders/cubemap.fragmentshader");
+	shaders["programShader"] = new Shader("shaders/VertexShader.vertexshader", "shaders/FragmentShader.fragmentshader");
+	shaders["textShader"] = new Shader("shaders/text.vertexshader", "shaders/text.fragmentshader");
+	shaders["cubemapShader"] = new Shader("shaders/cubemap.vertexshader", "shaders/cubemap.fragmentshader");
     shaders["skyboxShader"] = new Shader("shaders/skybox.vertexshader", "shaders/skybox.fragmentshader");
 }
 
