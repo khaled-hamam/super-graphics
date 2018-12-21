@@ -86,8 +86,6 @@ void SuperGraphicsEngine::start()
     hero = new Hero(vec3(0.f, 1.f, 0.f));
     level = generator.generateLevel();
 
-   // sun = new Directional();
-    point = new PointLight();
 	ResourceManager::playBackgroundMusic();
 
     double lastFrameDraw = 0;
@@ -116,8 +114,7 @@ void SuperGraphicsEngine::render()
     
     
     ResourceManager::bindCamera(&mainCamera, hero->position);
-    ((PointLight *)point)->position = hero->position;
-    point->use();
+
     for (auto &model : level) {
         double distanceFromHero = sqrt(
             pow(hero->position.x - model->position.x, 2) + 

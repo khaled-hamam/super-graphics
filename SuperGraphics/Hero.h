@@ -2,6 +2,8 @@
 #include "Primitives.h"
 #include "directions.h"
 #include "Model.h"
+#include "Lights.h"
+
 class Hero : public Model
 {
 public:
@@ -11,7 +13,7 @@ public:
 	vec3 lastPos;
 	float jumpStep = 0.1f, moveStep = 0.1f;
     double lastHitTime = 0;
-
+	PointLight* light;
     bool isImmune() {
         return glfwGetTime() - lastHitTime <= 3;
     }
@@ -31,7 +33,7 @@ public:
 		move(position);
 		rotate(rotaion);
 		changeScale(scale);
-
+		light = new PointLight();
 	}
 	void update() {
 		if (direction == UP) {
@@ -47,6 +49,7 @@ public:
         } else {
 			this->move(vec3(0.f, -moveStep, 0.f));
 		}
+		((PointLight*)light)->use();
 	}
      
 	void handelInput(GLFWwindow *Window) {
