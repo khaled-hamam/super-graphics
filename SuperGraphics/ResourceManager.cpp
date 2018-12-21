@@ -22,6 +22,7 @@ void ResourceManager::initializeTextures()
 	textures["box1"] = new Texture("Assets/box/box2.jpg", 0);
 	textures["brownBlock"] = new Texture("Assets/box/brownBlock.jpg", 0);
 
+	textures["lava"] = new  Texture("Assets/lava.jpg", 0);
     textures["skybox"] = new Texture(vector<string> {
         "Assets/skybox/skybox_right.jpg",
         "Assets/skybox/skybox_left.jpg",

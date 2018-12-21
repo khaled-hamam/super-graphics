@@ -118,8 +118,7 @@ void SuperGraphicsEngine::render()
     
 	textEngine->renderText("GAME OVER", 600.f, 375.0f, 1.0f, glm::vec3(RED));
     ResourceManager::bindCamera(&mainCamera, hero->position);
-    ((PointLight *)point)->position = hero->position;
-    point->use();
+
     for (auto &model : level) {
         double distanceFromHero = sqrt(
             pow(hero->position.x - model->position.x, 2) + 

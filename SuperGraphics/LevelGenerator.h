@@ -69,6 +69,17 @@ private:
         }
     }
 
+	void generateFireBlocks(vector<Model*> &level, vec3 start, vec3 ending) {
+		for (GLfloat i = start.x; i <= ending.x; ++i) {
+			for (GLfloat k = start.z; k <= ending.z; ++k) {
+				int choose = rand() % COIN_DIFFICULTY;
+				if (!choose) {
+					level.push_back(new FireBlock(vec3(i, ending.y + 1, k)));
+				}
+			}
+		}
+	}
+
     void generateFlyingBlocks(vector<Model*> &level, vec3 start, vec3 ending) {
         for (GLfloat i = start.x; i <= ending.x; ++i) {
             for (GLfloat k = start.z; k <= ending.z; ++k) {
@@ -107,7 +118,7 @@ public:
         this->generatePowerups(level, start, ending);
         this->generateFlyingBlocks(level, start, ending);
         this->generateCoins(level, start, ending);
-
+		this->generateFireBlocks(level, start, ending);
         return level;
     }
 };

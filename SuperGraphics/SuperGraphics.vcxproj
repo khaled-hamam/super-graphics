@@ -162,6 +162,7 @@
     <ClInclude Include="CollisionResult.h" />
     <ClInclude Include="colors.h" />
     <ClInclude Include="directions.h" />
+    <ClInclude Include="FireBlock.h" />
     <ClInclude Include="FPCamera.h" />
     <ClInclude Include="Hero.h" />
     <ClInclude Include="LevelGenerator.h" />

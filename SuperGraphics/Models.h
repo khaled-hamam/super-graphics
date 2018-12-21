@@ -8,3 +8,4 @@
 #include "Spike.h"
 #include "Villian.h"
 #include "woodenBox.h"
+#include "FireBlock.h"

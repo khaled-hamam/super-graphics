@@ -163,6 +163,9 @@
       <Filter>Text</Filter>
     </ClInclude>
     <ClInclude Include="resource.h" />
+    <ClInclude Include="FireBlock.h">
+      <Filter>Models</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\cubemap.fragmentshader">
