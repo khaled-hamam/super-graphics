@@ -1,11 +1,18 @@
 #ifndef FPCamera_h__
 #define FPCamera_h__
 
+#include <gl/glfw3.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/rotate_vector.hpp>
 
 class Hero;
+
+enum CameraMode {
+    FREE_CAMERA,
+    SIDE_CAMERA,
+    BACK_CAMERA
+};
 
 class FPCamera
 {
@@ -16,6 +23,7 @@ class FPCamera
 	glm::mat4 mViewMatrix;
 	glm::mat4 mProjectionMatrix;
     Hero* bindedHero;
+    Hero* prevBindedHero;
     glm::vec3 positionOffset;
 
 	glm::vec3 GetLookDirection();
@@ -33,6 +41,8 @@ public:
     void bindHero(Hero *hero, glm::vec3 positionOffset = glm::vec3(-5.f, 1.5f, -0.5f));
     void updatePositionToHero();
     friend void updateCameraPositionToHero(FPCamera *camera);
+    void setCameraMode(CameraMode mode);
+    void handleInput(GLFWwindow* window);
 	void Reset(float eyeX, float eyeY, float eyeZ, float centerX, float centerY, float centerZ, float upX, float upY, float upZ);
 	void Reset(const glm::vec3 &eye, const glm::vec3 &center, glm::vec3  &up);
 

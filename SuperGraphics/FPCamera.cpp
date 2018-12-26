@@ -8,6 +8,7 @@ FPCamera::FPCamera(void)
 
 	SetPerspectiveProjection(45.0f, 1200.0f / 750.0f, 0.1f, 100.0f);
     this->bindedHero = nullptr;
+    this->prevBindedHero = nullptr;
 }
 
 FPCamera::~FPCamera(void)
@@ -17,6 +18,95 @@ FPCamera::~FPCamera(void)
 glm::vec3 FPCamera::GetLookDirection()
 {
 	return -mDirection;
+}
+
+void FPCamera::setCameraMode(CameraMode mode)
+{
+    switch (mode)
+    {
+    case FREE_CAMERA:
+        if (this->bindedHero) {
+            this->prevBindedHero = this->bindedHero;
+            this->bindedHero = nullptr;
+        }
+        break;
+    case SIDE_CAMERA:
+        this->Reset(
+            0, 0, 5, 
+		    0, 0, 0, 
+		    0, 1, 0
+        );
+        this->positionOffset = glm::vec3(2.f, 1.f, 7.f);
+        if (this->prevBindedHero) {
+            this->bindedHero = this->prevBindedHero;
+            this->prevBindedHero = nullptr;
+        }
+        break;
+    case BACK_CAMERA:
+        this->Reset(
+            -5, 1.5, -.5, 
+		     1, 0.f, -.5, 
+		     0, 1, 0
+        );
+        this->positionOffset = glm::vec3(-5.f, 1.5f, -0.5f);
+        if (this->prevBindedHero) {
+            this->bindedHero = this->prevBindedHero;
+            this->prevBindedHero = nullptr;
+        }
+        break;
+    default:
+        break;
+    }
+}
+
+void FPCamera::handleInput(GLFWwindow* window)
+{
+    float step = 0.05f;
+    float angle = 1.f;
+
+    if(glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
+        this->Walk(step);
+    }
+    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) {
+        this->Walk(-step);
+    }
+    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) {
+        this->Strafe(step);
+    }
+    if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
+        this->Strafe(-step);
+    }
+    if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS) {
+        this->Fly(step);
+    }
+    if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS) {
+        this->Fly(-step);
+    } 
+    if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS) {
+        this->Pitch(angle);
+    }
+    if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS) {
+        this->Pitch(-angle);
+    }
+    if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS) {
+        this->Yaw(angle);
+    }
+    if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS) {
+        this->Yaw(-angle);
+    }
+
+    if (glfwGetKey(window, GLFW_KEY_KP_1) == GLFW_PRESS || glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS) {
+        this->setCameraMode(BACK_CAMERA);
+    }
+    if (glfwGetKey(window, GLFW_KEY_KP_2) == GLFW_PRESS || glfwGetKey(window, GLFW_KEY_2) == GLFW_PRESS) {
+        this->setCameraMode(SIDE_CAMERA);
+    }
+    if (glfwGetKey(window, GLFW_KEY_KP_3) == GLFW_PRESS || glfwGetKey(window, GLFW_KEY_3) == GLFW_PRESS) {
+        this->setCameraMode(FREE_CAMERA);
+    }
+
+    this->updatePositionToHero();
+    this->UpdateViewMatrix();
 }
 
 void FPCamera::Reset(float eyeX, float eyeY, float eyeZ, float centerX, float centerY, float centerZ, float upX, float upY, float upZ)

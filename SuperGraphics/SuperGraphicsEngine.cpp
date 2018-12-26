@@ -12,8 +12,8 @@
 #include "Lights.h"
 SuperGraphicsEngine::SuperGraphicsEngine()
 {
-    this->windowWidth = 1200;
-    this->windowHeight = 750;
+    windowWidth = 1200;
+    windowHeight = 750;
     this->initialize();
 }
 
@@ -87,7 +87,7 @@ void SuperGraphicsEngine::start()
     level = generator.generateLevel();
     level.push_back(new SmartEnemy(hero, vec3(3.f, 1.f, 0.f)));
     sun = new DirectionalLight();
-	textEngine = new TextRenderer(this->windowWidth, this->windowHeight);
+	textEngine = new TextRenderer(windowWidth, windowHeight);
 	textEngine->loadFont("Assets/Fonts/arial.ttf", 48);
 	ResourceManager::playBackgroundMusic();
 
@@ -129,6 +129,7 @@ void SuperGraphicsEngine::render()
         if (distanceFromHero <= drawDistance && distanceOnX <= 4)
             model->render();
     }
+
     skybox->render();
 	hero->render();
 
@@ -189,39 +190,6 @@ CollisionResult SuperGraphicsEngine::areColliding(Hero *hero, Model *model) {
 
 void SuperGraphicsEngine::handleInput()
 { 
-    float step = 0.05f;
-    float angle = 1.f;
 	hero->handelInput(window);
-    if(glfwGetKey(this->window, GLFW_KEY_W) == GLFW_PRESS) {
-        mainCamera.Walk(step);
-    }
-    if (glfwGetKey(this->window, GLFW_KEY_S) == GLFW_PRESS) {
-        mainCamera.Walk(-step);
-    }
-    if (glfwGetKey(this->window, GLFW_KEY_D) == GLFW_PRESS) {
-        mainCamera.Strafe(step);
-    }
-    if (glfwGetKey(this->window, GLFW_KEY_A) == GLFW_PRESS) {
-        mainCamera.Strafe(-step);
-    }
-    if (glfwGetKey(this->window, GLFW_KEY_Q) == GLFW_PRESS) {
-        mainCamera.Fly(step);
-    }
-    if (glfwGetKey(this->window, GLFW_KEY_E) == GLFW_PRESS) {
-        mainCamera.Fly(-step);
-    } 
-    if (glfwGetKey(this->window, GLFW_KEY_UP) == GLFW_PRESS) {
-        mainCamera.Pitch(angle);
-    }
-    if (glfwGetKey(this->window, GLFW_KEY_DOWN) == GLFW_PRESS) {
-        mainCamera.Pitch(-angle);
-    }
-    if (glfwGetKey(this->window, GLFW_KEY_LEFT) == GLFW_PRESS) {
-        mainCamera.Yaw(angle);
-    }
-    if (glfwGetKey(this->window, GLFW_KEY_RIGHT) == GLFW_PRESS) {
-        mainCamera.Yaw(-angle);
-    }
-
-    mainCamera.UpdateViewMatrix();
+    mainCamera.handleInput(window);
 }

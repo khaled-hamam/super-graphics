@@ -21,15 +21,24 @@ void ResourceManager::initializeTextures()
     textures["box"] = new Texture("Assets/box/box.jpg", 0);
 	textures["box1"] = new Texture("Assets/box/box2.jpg", 0);
 	textures["brownBlock"] = new Texture("Assets/box/brownBlock.jpg", 0);
+	textures["lava"] = new Texture("Assets/lava.jpg", 0);
 
-	textures["lava"] = new  Texture("Assets/lava.jpg", 0);
-    textures["skybox"] = new Texture(vector<string> {
+    textures["skybox-day"] = new Texture(vector<string> {
         "Assets/skybox/skybox_right.jpg",
         "Assets/skybox/skybox_left.jpg",
         "Assets/skybox/skybox_up.jpg",
         "Assets/skybox/skybox_down.jpg",
         "Assets/skybox/skybox_back.jpg",
         "Assets/skybox/skybox_front.jpg"
+	}, 0);
+
+    textures["skybox-night"] = new Texture(vector<string> {
+        "Assets/skybox-night/skybox_right.jpg",
+        "Assets/skybox-night/skybox_left.jpg",
+        "Assets/skybox-night/skybox_up.jpg",
+        "Assets/skybox-night/skybox_down.jpg",
+        "Assets/skybox-night/skybox_back.jpg",
+        "Assets/skybox-night/skybox_front.jpg"
 	}, 0);
 }
 
