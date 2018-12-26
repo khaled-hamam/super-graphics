@@ -23,9 +23,9 @@ void SuperGraphicsEngine::initialize()
     this->initializeGLEW();
 
     // Set the background color
-	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
     
     this->initializeGLOptions();
+	//glClearColor(0.0f, 0.0f, 1.0f, 0.0f);
     
     ResourceManager::initializeResources();
 }
@@ -76,7 +76,6 @@ void SuperGraphicsEngine::initializeGLOptions() {
 }
 
 Light *sun;
-Light *point;
 
 void SuperGraphicsEngine::start()
 {
@@ -84,13 +83,13 @@ void SuperGraphicsEngine::start()
 
     skybox = new Skybox();
     hero = new Hero(vec3(0.f, 1.f, 0.f));
+    mainCamera.bindHero(hero);
     level = generator.generateLevel();
-
-   // sun = new Directional();
-    point = new PointLight();
+    level.push_back(new SmartEnemy(hero, vec3(3.f, 1.f, 0.f)));
+    sun = new DirectionalLight();
 	textEngine = new TextRenderer(this->windowWidth, this->windowHeight);
-	textEngine->loadFont("Assets/Fonts/OCRAEXT.TTF", 100);
-	//ResourceManager::playBackgroundMusic();
+	textEngine->loadFont("Assets/Fonts/arial.ttf", 48);
+	ResourceManager::playBackgroundMusic();
 
     double lastFrameDraw = 0;
     do {
@@ -116,8 +115,8 @@ void SuperGraphicsEngine::render()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
-	textEngine->renderText("GAME OVER", 600.f, 375.0f, 1.0f, glm::vec3(RED));
-    ResourceManager::bindCamera(&mainCamera, hero->position);
+	
+    ResourceManager::bindCamera(&mainCamera);
 
     for (auto &model : level) {
         double distanceFromHero = sqrt(
@@ -125,20 +124,21 @@ void SuperGraphicsEngine::render()
             pow(hero->position.y - model->position.y, 2) +
             pow(hero->position.z - model->position.z, 2)
         );
+        double distanceOnX = hero->position.x - model->position.x;
 
-        if (distanceFromHero < drawDistance)
+        if (distanceFromHero <= drawDistance && distanceOnX <= 4)
             model->render();
     }
-
-	hero->render();
     skybox->render();
+	hero->render();
 
 	hero->update();
     for (auto &model : level) {
         model->update();
     }
 
-    //hero->printState();
+    textEngine->renderText("Lives: " + to_string(hero->lives), 5.f, 5.f, 1.0f, glm::vec3(BLACK));
+    textEngine->renderText("Coins: " + to_string(hero->coins), 5.f, 60.f, 1.0f, glm::vec3(BLACK));
 }
 
 void SuperGraphicsEngine::checkCollision() {

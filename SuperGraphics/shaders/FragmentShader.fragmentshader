@@ -57,12 +57,12 @@ void main() {
 
 	vec3 light = vec3(0.f);
 
-	// light += calcDirLight(directionalLight, norm, viewDir, colorValue.xyz);
+	light += calcDirLight(directionalLight, norm, viewDir, colorValue.xyz);
 
 	for (int i = 0; i < MAX_LIGHT_SOURCES; ++i)
 		light += calcPointLight(pointLights[i], norm, viewDir, colorValue.xyz);
 
-	color = vec4(light, 1.f);
+	color = vec4(light, colorValue.a);
 }
 
 vec3 calcDirLight(DirectionalLight light, vec3 normal, vec3 viewDir, vec3 colorValue) {

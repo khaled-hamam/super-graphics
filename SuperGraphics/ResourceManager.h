@@ -20,7 +20,7 @@ public:
     static void initializeResources();
     static Shader* getShader(string shaderName);
     static Texture* getTexture(string textureName);
-    static void bindCamera(FPCamera *activeCamera, glm::vec3 heroPositon);
+    static void bindCamera(FPCamera *activeCamera);
 	static ISoundEngine* getSoundEngine(string engineName);
     static Shader* getAppropriateShader(Texture *texture);
 	static void playSoundEffect(char *);

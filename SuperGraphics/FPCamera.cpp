@@ -7,6 +7,7 @@ FPCamera::FPCamera(void)
 		0, 1, 0);
 
 	SetPerspectiveProjection(45.0f, 1200.0f / 750.0f, 0.1f, 100.0f);
+    this->bindedHero = nullptr;
 }
 
 FPCamera::~FPCamera(void)
@@ -61,6 +62,17 @@ glm::mat4 FPCamera::GetProjectionMatrix()
 glm::vec3 FPCamera::getPosition()
 {
     return this->mPosition;
+}
+
+void FPCamera::bindHero(Hero * hero, glm::vec3 positionOffset)
+{
+    this->bindedHero = hero;
+    this->positionOffset = positionOffset;
+}
+
+void FPCamera::updatePositionToHero()
+{
+    updateCameraPositionToHero(this);
 }
 
 void FPCamera::setPosition(glm::vec3 position)

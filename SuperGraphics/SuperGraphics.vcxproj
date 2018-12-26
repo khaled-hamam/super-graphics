@@ -107,7 +107,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <AdditionalDependencies>opengl32.lib;glew32.lib;glfw3.lib;irrKlang.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glew32.lib;glfw3.lib;irrKlang.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -144,6 +144,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="FPCamera.cpp" />
+    <ClCompile Include="Helpers.cpp" />
     <ClCompile Include="Light.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Model.cpp" />
@@ -176,10 +177,10 @@
     <ClInclude Include="PowerUp.h" />
     <ClInclude Include="Primitive.h" />
     <ClInclude Include="Primitives.h" />
-    <ClInclude Include="resource.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="shader.hpp" />
     <ClInclude Include="Skybox.h" />
+    <ClInclude Include="SmartEnemy.h" />
     <ClInclude Include="Spaceship.h" />
     <ClInclude Include="Spike.h" />
     <ClInclude Include="stb_image.h" />
@@ -196,12 +197,9 @@
     <None Include="shaders\FragmentShader.fragmentshader" />
     <None Include="shaders\skybox.fragmentshader" />
     <None Include="shaders\skybox.vertexshader" />
+    <None Include="shaders\text.fragmentshader" />
+    <None Include="shaders\text.vertexshader" />
     <None Include="shaders\VertexShader.vertexshader" />
-    <None Include="text.fragmentshader" />
-    <None Include="text.vertexshader" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="SuperGraphics.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

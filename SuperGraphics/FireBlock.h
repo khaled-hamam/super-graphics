@@ -22,25 +22,22 @@ public:
 
 	void update() {
 		((PointLight *)point)->position = this->position;
-		((PointLight *)point)->ambient =vec3(0.2* sin(glfwGetTime()), 0.f, 0.f);
-		((PointLight *)point)->diffuse = vec3( sin(glfwGetTime()), 0.f, 0.f);
+		((PointLight *)point)->ambient = vec3(0.2* sin(glfwGetTime()), 0.f, 0.f);
+		((PointLight *)point)->diffuse = vec3(pow(sin(glfwGetTime()), 2), 0.f, 0.f);
 		point->use();
 	}
 
 	virtual void collision(Model *model, Directions directions, float distance) override {
 		Hero *hero = (Hero*)model;
-		hero->lives -= 1;
+        hero->decreaseLives();
 		if (directions == UP) {
 			hero->move(vec3(0.f, distance, 0.f));
-			ResourceManager::playSoundEffect("Audio/killenemy.wav");
 		}
 		else if (directions == LEFT) {
 			hero->move(vec3(-distance, 0.f, 0.f));
-			hero->decreaseLives();
 		}
 		else if (directions == RIGHT) {
 			hero->move(vec3(distance, 0.f, 0.f));
-			hero->decreaseLives();
 		}
 	}
 

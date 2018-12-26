@@ -7,9 +7,9 @@ unordered_map<string, ISoundEngine*> ResourceManager::soundEngines;
 void ResourceManager::initializeShaders()
 {
 	shaders["programShader"] = new Shader("shaders/VertexShader.vertexshader", "shaders/FragmentShader.fragmentshader");
-	shaders["textShader"] = new Shader("shaders/text.vertexshader", "shaders/text.fragmentshader");
 	shaders["cubemapShader"] = new Shader("shaders/cubemap.vertexshader", "shaders/cubemap.fragmentshader");
     shaders["skyboxShader"] = new Shader("shaders/skybox.vertexshader", "shaders/skybox.fragmentshader");
+	shaders["textShader"] = new Shader("shaders/text.vertexshader", "shaders/text.fragmentshader");
 }
 
 void ResourceManager::initializeTextures()
@@ -65,10 +65,9 @@ ISoundEngine * ResourceManager::getSoundEngine(string engineName)
 	return ResourceManager::soundEngines[engineName];
 }
 
-void ResourceManager::bindCamera(FPCamera * activeCamera, glm::vec3 heroPositon)
+void ResourceManager::bindCamera(FPCamera * activeCamera)
 {
-    //glm::vec3 cameraPosition = glm::vec3(heroPositon.x - 5.f, heroPositon.y + 1.5, -0.5f);
-    //activeCamera->setPosition(cameraPosition);
+    activeCamera->updatePositionToHero();
 
     for (auto &shader : shaders) {
         shader.second->setMat4("ProjectionMatrix", &activeCamera->GetProjectionMatrix()[0][0]);

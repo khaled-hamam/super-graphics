@@ -67,6 +67,9 @@
     <ClCompile Include="TextRenderer.cpp">
       <Filter>Text</Filter>
     </ClCompile>
+    <ClCompile Include="Helpers.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FPCamera.h">
@@ -162,8 +165,10 @@
     <ClInclude Include="TextRenderer.h">
       <Filter>Text</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h" />
     <ClInclude Include="FireBlock.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="SmartEnemy.h">
       <Filter>Models</Filter>
     </ClInclude>
   </ItemGroup>
@@ -186,14 +191,11 @@
     <None Include="shaders\skybox.vertexshader">
       <Filter>Shader\shaders</Filter>
     </None>
-    <None Include="text.vertexshader">
+    <None Include="shaders\text.fragmentshader">
       <Filter>Shader\shaders</Filter>
     </None>
-    <None Include="text.fragmentshader">
+    <None Include="shaders\text.vertexshader">
       <Filter>Shader\shaders</Filter>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="SuperGraphics.rc" />
   </ItemGroup>
 </Project>

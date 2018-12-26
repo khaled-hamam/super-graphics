@@ -114,11 +114,12 @@ public:
             }
         }
 
-        this->generateVillains(level, start, ending);
         this->generatePowerups(level, start, ending);
         this->generateFlyingBlocks(level, start, ending);
-        this->generateCoins(level, start, ending);
 		this->generateFireBlocks(level, start, ending);
+        this->generateVillains(level, start, ending);
+        this->generateCoins(level, start, ending);
+
         return level;
     }
 };

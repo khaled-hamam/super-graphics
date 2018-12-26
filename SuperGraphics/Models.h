@@ -1,4 +1,5 @@
 #pragma once
+#define MODELS__
 #include "Hero.h"
 #include "Block.h"
 #include "Coin.h"
@@ -9,3 +10,4 @@
 #include "Villian.h"
 #include "woodenBox.h"
 #include "FireBlock.h"
+#include "SmartEnemy.h"

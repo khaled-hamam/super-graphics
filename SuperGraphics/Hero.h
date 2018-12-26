@@ -49,6 +49,7 @@ public:
         } else {
 			this->move(vec3(0.f, -moveStep, 0.f));
 		}
+        ((PointLight*)light)->position = this->position;
 		((PointLight*)light)->use();
 	}
      

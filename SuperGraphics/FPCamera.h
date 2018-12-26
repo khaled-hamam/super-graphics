@@ -5,6 +5,8 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/rotate_vector.hpp>
 
+class Hero;
+
 class FPCamera
 {
 	glm::vec3 mPosition;
@@ -13,6 +15,8 @@ class FPCamera
 	glm::vec3 mDirection;
 	glm::mat4 mViewMatrix;
 	glm::mat4 mProjectionMatrix;
+    Hero* bindedHero;
+    glm::vec3 positionOffset;
 
 	glm::vec3 GetLookDirection();
 
@@ -26,7 +30,9 @@ public:
 	glm::mat4 GetProjectionMatrix();
     glm::vec3 getPosition();
     void setPosition(glm::vec3 position);
-
+    void bindHero(Hero *hero, glm::vec3 positionOffset = glm::vec3(-5.f, 1.5f, -0.5f));
+    void updatePositionToHero();
+    friend void updateCameraPositionToHero(FPCamera *camera);
 	void Reset(float eyeX, float eyeY, float eyeZ, float centerX, float centerY, float centerZ, float upX, float upY, float upZ);
 	void Reset(const glm::vec3 &eye, const glm::vec3 &center, glm::vec3  &up);
 
@@ -79,5 +85,5 @@ public:
 	/// </summary>
 	void Slide(float stepR, float stepU, float stepD);
 };
-#endif // FPCamera_h__
 
+#endif // FPCamera_h__
