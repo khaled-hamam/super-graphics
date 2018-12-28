@@ -120,9 +120,6 @@
     <ClInclude Include="Hero.h">
       <Filter>Models</Filter>
     </ClInclude>
-    <ClInclude Include="Block.h">
-      <Filter>Models</Filter>
-    </ClInclude>
     <ClInclude Include="Spaceship.h">
       <Filter>Models</Filter>
     </ClInclude>
@@ -170,6 +167,18 @@
     </ClInclude>
     <ClInclude Include="SmartEnemy.h">
       <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Block.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="ControlScheme.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Attenuation.h">
+      <Filter>Light</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

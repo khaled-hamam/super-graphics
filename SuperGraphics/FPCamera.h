@@ -41,6 +41,7 @@ public:
     void bindHero(Hero *hero, glm::vec3 positionOffset = glm::vec3(-5.f, 1.5f, -0.5f));
     void updatePositionToHero();
     friend void updateCameraPositionToHero(FPCamera *camera);
+    friend void updateCameraHeroControls(FPCamera *camera, CameraMode mode);
     void setCameraMode(CameraMode mode);
     void handleInput(GLFWwindow* window);
 	void Reset(float eyeX, float eyeY, float eyeZ, float centerX, float centerY, float centerZ, float upX, float upY, float upZ);

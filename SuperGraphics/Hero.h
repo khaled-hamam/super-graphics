@@ -3,9 +3,14 @@
 #include "directions.h"
 #include "Model.h"
 #include "Lights.h"
+#include "ControlScheme.h"
 
 class Hero : public Model
 {
+private:
+    Controls::ControlScheme HeroNormalControl = { GLFW_KEY_SPACE, GLFW_KEY_LEFT, GLFW_KEY_RIGHT, GLFW_KEY_UP, GLFW_KEY_DOWN };
+    Controls::ControlScheme HeroFlippedControl = { GLFW_KEY_SPACE, GLFW_KEY_UP, GLFW_KEY_DOWN, GLFW_KEY_RIGHT, GLFW_KEY_LEFT };
+
 public:
 	int lives = 3;
 	int coins = 0;
@@ -14,6 +19,8 @@ public:
 	float jumpStep = 0.1f, moveStep = 0.1f;
     double lastHitTime = 0;
 	PointLight* light;
+    Controls::ControlScheme scheme = this->HeroNormalControl;
+
     bool isImmune() {
         return glfwGetTime() - lastHitTime <= 3;
     }
@@ -54,17 +61,25 @@ public:
 	}
      
 	void handelInput(GLFWwindow *Window) {
-		if (glfwGetKey(Window, GLFW_KEY_I) == GLFW_PRESS && direction == STATIC) {
+		if (glfwGetKey(Window, scheme.Jump) == GLFW_PRESS && direction == STATIC) {
 			lastPos = this->position;
 			direction = UP;
 			ResourceManager::playSoundEffect("Audio/jump.ogg");
 		}
-		if (glfwGetKey(Window, GLFW_KEY_J) == GLFW_PRESS) {
+		if (glfwGetKey(Window, scheme.Backward) == GLFW_PRESS) {
 			this->move(vec3(-moveStep, 0.f, 0.f));
 		}
-		if (glfwGetKey(Window, GLFW_KEY_L) == GLFW_PRESS) {
+		if (glfwGetKey(Window, scheme.Forward) == GLFW_PRESS) {
 			this->move(vec3(moveStep, 0.f, 0.f));
-		}	
+		}
+        if (glfwGetKey(Window, scheme.Left) == GLFW_PRESS) {
+            if (this->position.z >= 0)
+                this->move(vec3(0.f, 0.f, -1.f));
+        }
+        if (glfwGetKey(Window, scheme.Right) == GLFW_PRESS) {
+            if (this->position.z <= -1)
+                this->move(vec3(0.f, 0.f, 1.f));
+        }
 	}
 
     void printState() {
@@ -77,6 +92,14 @@ public:
         cout << "Game State: ";
         (lives <= 0) ? cout << "Game Over\n" : cout << "Game Running\n";
         cout << string(10, '*') << endl;
+    }
+
+    void setControls(bool isFlipped) {
+        if (isFlipped) {
+            this->scheme = HeroFlippedControl;
+        } else {
+            this->scheme = HeroNormalControl;
+        }
     }
 	~Hero();
 };

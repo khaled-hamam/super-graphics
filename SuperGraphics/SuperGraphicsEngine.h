@@ -15,6 +15,7 @@
 #include "LevelGenerator.h"
 #include "CollisionResult.h"
 #include "TextRenderer.h"
+#include "GameState.h"
 using namespace irrklang;
 using namespace std;
 
@@ -27,18 +28,20 @@ private:
     GLuint windowHeight;
     GLuint programID;
     
+    GameState gameState = READY;
 	TextRenderer *textEngine;
     FPCamera mainCamera;
     GLfloat drawDistance = 25.f;
-    Skybox *skybox;
-    Hero *hero;
-    vector<Model*> level;
+    Level *level;
 
     void initialize();
     void initializeGLFW();
     void initializeGLEW();
     void initializeGLOptions();
     void render();
+    void renderReadyScreen();
+    void renderRunningScreen();
+    void renderGameOverScreen();
     void handleInput();
     void checkCollision();
 	CollisionResult areColliding(Hero *hero, Model *model);

@@ -10,6 +10,7 @@
 #include "woodenBox.h"
 #include "Villian.h"
 #include "Lights.h"
+
 SuperGraphicsEngine::SuperGraphicsEngine()
 {
     windowWidth = 1200;
@@ -23,9 +24,9 @@ void SuperGraphicsEngine::initialize()
     this->initializeGLEW();
 
     // Set the background color
+	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
     
     this->initializeGLOptions();
-	//glClearColor(0.0f, 0.0f, 1.0f, 0.0f);
     
     ResourceManager::initializeResources();
 }
@@ -80,13 +81,9 @@ Light *sun;
 void SuperGraphicsEngine::start()
 {
     LevelGenerator generator;
+    this->level = generator.generateLevel();
 
-    skybox = new Skybox();
-    hero = new Hero(vec3(0.f, 1.f, 0.f));
-    mainCamera.bindHero(hero);
-    level = generator.generateLevel();
-    level.push_back(new SmartEnemy(hero, vec3(3.f, 1.f, 0.f)));
-    sun = new DirectionalLight();
+    mainCamera.bindHero(level->hero);
 	textEngine = new TextRenderer(windowWidth, windowHeight);
 	textEngine->loadFont("Assets/Fonts/arial.ttf", 48);
 	ResourceManager::playBackgroundMusic();
@@ -111,43 +108,71 @@ void SuperGraphicsEngine::start()
     glfwTerminate();
 }
 
-void SuperGraphicsEngine::render()
-{
+void SuperGraphicsEngine::render(){
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
-	
+    switch (this->gameState)
+    {
+    case RUNNING:
+        this->renderRunningScreen();
+        break;
+    case READY:
+        this->renderReadyScreen();
+        break;
+    case GAME_OVER:
+        this->renderGameOverScreen();
+        break;
+    }
+}
+
+void SuperGraphicsEngine::renderRunningScreen()
+{
     ResourceManager::bindCamera(&mainCamera);
 
-    for (auto &model : level) {
+    for (auto &model : level->world) {
         double distanceFromHero = sqrt(
-            pow(hero->position.x - model->position.x, 2) + 
-            pow(hero->position.y - model->position.y, 2) +
-            pow(hero->position.z - model->position.z, 2)
+            pow(level->hero->position.x - model->position.x, 2) +
+            pow(level->hero->position.y - model->position.y, 2) +
+            pow(level->hero->position.z - model->position.z, 2)
         );
-        double distanceOnX = hero->position.x - model->position.x;
+        double distanceOnX = level->hero->position.x - model->position.x;
 
         if (distanceFromHero <= drawDistance && distanceOnX <= 4)
             model->render();
     }
 
-    skybox->render();
-	hero->render();
+    level->skybox->render();
+    level->hero->render();
 
-	hero->update();
-    for (auto &model : level) {
+    level->hero->update();
+    for (auto &model : level->world) {
         model->update();
     }
 
-    textEngine->renderText("Lives: " + to_string(hero->lives), 5.f, 5.f, 1.0f, glm::vec3(BLACK));
-    textEngine->renderText("Coins: " + to_string(hero->coins), 5.f, 60.f, 1.0f, glm::vec3(BLACK));
+    textEngine->renderText("Lives: " + to_string(level->hero->lives), 5.f, 5.f, 1.0f, glm::vec3(BLACK));
+    textEngine->renderText("Coins: " + to_string(level->hero->coins), 5.f, 60.f, 1.0f, glm::vec3(BLACK));
+
+    if (level->hero->lives <= 0) {
+        this->gameState = GAME_OVER;
+    }
+}
+
+void SuperGraphicsEngine::renderReadyScreen() {
+    textEngine->renderText("Super Graphics Game", 600, 375, 1.0f, glm::vec3(BLACK));
+    textEngine->renderText("Press Enter to Start", 600, 450, 0.5f, glm::vec3(BLACK));
+}
+
+void SuperGraphicsEngine::renderGameOverScreen() {
+    textEngine->renderText("Game Over", 600, 375, 1.0f, glm::vec3(BLACK));
+    textEngine->renderText("Press Enter to Retry", 600, 450, 0.5f, glm::vec3(BLACK));
 }
 
 void SuperGraphicsEngine::checkCollision() {
-    for (auto &model : level) {
-        CollisionResult result = areColliding(hero, model);
+    for (auto &model : level->world) {
+        CollisionResult result = areColliding(level->hero, model);
         if (result.areColliding && !model->destroyed) {
-            hero->direction = STATIC;
-            model->collision(hero, result.direction, result.distance);
+            level->hero->direction = STATIC;
+            model->collision(level->hero, result.direction, result.distance);
         }
     }
 }
@@ -189,7 +214,22 @@ CollisionResult SuperGraphicsEngine::areColliding(Hero *hero, Model *model) {
 }
 
 void SuperGraphicsEngine::handleInput()
-{ 
-	hero->handelInput(window);
-    mainCamera.handleInput(window);
+{
+    switch (this->gameState)
+    {
+    case RUNNING:
+        level->hero->handelInput(window);
+        mainCamera.handleInput(window);
+        break;
+    case READY:
+        if (glfwGetKey(this->window, GLFW_KEY_ENTER) == GLFW_PRESS) {
+            this->gameState = RUNNING;
+        }
+        break;
+    case GAME_OVER:
+        if (glfwGetKey(this->window, GLFW_KEY_ENTER) == GLFW_PRESS) {
+            this->gameState = RUNNING;
+        }
+        break;
+    }
 }

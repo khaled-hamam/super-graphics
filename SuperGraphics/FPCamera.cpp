@@ -82,23 +82,25 @@ void FPCamera::handleInput(GLFWwindow* window)
     if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS) {
         this->Fly(-step);
     } 
-    if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS) {
-        this->Pitch(angle);
-    }
-    if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS) {
-        this->Pitch(-angle);
-    }
-    if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS) {
-        this->Yaw(angle);
-    }
-    if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS) {
-        this->Yaw(-angle);
-    }
+    //if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS) {
+    //    this->Pitch(angle);
+    //}
+    //if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS) {
+    //    this->Pitch(-angle);
+    //}
+    //if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS) {
+    //    this->Yaw(angle);
+    //}
+    //if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS) {
+    //    this->Yaw(-angle);
+    //}
 
     if (glfwGetKey(window, GLFW_KEY_KP_1) == GLFW_PRESS || glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS) {
+        updateCameraHeroControls(this, BACK_CAMERA);
         this->setCameraMode(BACK_CAMERA);
     }
     if (glfwGetKey(window, GLFW_KEY_KP_2) == GLFW_PRESS || glfwGetKey(window, GLFW_KEY_2) == GLFW_PRESS) {
+        updateCameraHeroControls(this, SIDE_CAMERA);
         this->setCameraMode(SIDE_CAMERA);
     }
     if (glfwGetKey(window, GLFW_KEY_KP_3) == GLFW_PRESS || glfwGetKey(window, GLFW_KEY_3) == GLFW_PRESS) {

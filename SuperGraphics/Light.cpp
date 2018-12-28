@@ -12,7 +12,7 @@ Light::Light(LightType light, vec3 ambient, vec3 diffuse, vec3 specular)
 
     switch(light) {
     case DIRECTIONAL:
-        this->lightName = "directionalLight";
+        this->lightName = "directionalLights[" + to_string(directionalLightsCount) + "]";
         directionalLightsCount++;
         break;
     case POINT:

@@ -7,7 +7,19 @@ void updateCameraPositionToHero(FPCamera *camera)
         camera->setPosition(glm::vec3(
             heroPosition.x + camera->positionOffset.x, 
             heroPosition.y + camera->positionOffset.y,
-            heroPosition.z + camera->positionOffset.z
+            camera->positionOffset.z
         ));
+    }
+}
+
+
+void updateCameraHeroControls(FPCamera *camera, CameraMode mode) {
+    if (!camera->bindedHero)
+        return;
+
+    if (mode == BACK_CAMERA) {
+        camera->bindedHero->setControls(false); 
+    } else {
+        camera->bindedHero->setControls(true);
     }
 }
