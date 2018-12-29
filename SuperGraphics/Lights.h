@@ -9,9 +9,9 @@ public:
 
     DirectionalLight(
         vec3 direction = vec3(-1.f, -1.f, .5f),
-        vec3 ambient =  vec3(1.0f, 1.0f, 1.0f),
-        vec3 diffuse =  vec3(0.5f, 0.5f, 0.5f),
-        vec3 specular =  vec3(1.0f, 1.0f, 1.0f)
+        vec3 ambient =  vec3(0.1f),
+        vec3 diffuse =  vec3(0.1f),
+        vec3 specular =  vec3(0.1f)
     ) : Light(DIRECTIONAL, ambient, diffuse, specular) {
         this->direction = direction;
     }

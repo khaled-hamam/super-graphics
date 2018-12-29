@@ -205,6 +205,7 @@ public:
 
         if (!level.sun)
             level.sun = new DirectionalLight();
+        level.sun->use();
 
         level.world.clear();
 
