@@ -22,8 +22,9 @@ public:
 
 	void update() {
 		((PointLight *)point)->position = this->position;
-		((PointLight *)point)->ambient = vec3(0.2* sin(glfwGetTime()), 0.f, 0.f);
-		((PointLight *)point)->diffuse = vec3(pow(sin(glfwGetTime()), 2), 0.f, 0.f);
+        float redValue = max(pow(sin(glfwGetTime()), 2), 0.6);
+		((PointLight *)point)->ambient = vec3(redValue, 0.3f, 0.3f);
+		((PointLight *)point)->diffuse = vec3(redValue, 0.3f, 0.3f);
 		point->use();
 	}
 

@@ -33,10 +33,10 @@ public:
         vec3 scale = vec3(1.f)
     ) : Primitive(texture, position, rotation, scale) {
         vertices = {
-            { vec3(-0.5f, -0.5f, 0.f), vec3(RED), vec2(0.f, 0.f), vec3(NORMAL_ZPOS) },
-            { vec3(-0.5f, 0.5f, 0.f), vec3(GREEN), vec2(0.f, 1.f), vec3(NORMAL_ZPOS) },
-            { vec3(0.5f, 0.5f, 0.f), vec3(BLUE), vec2(1.f, 1.f), vec3(NORMAL_ZPOS) },
-            { vec3(0.5f, -0.5f, 0.f), vec3(RED), vec2(1.f, 0.f), vec3(NORMAL_ZPOS) },
+            { vec3(-0.5f, -0.5f, 0.f), vec3(BLACK), vec2(0.f, 0.f), vec3(NORMAL_ZPOS) },
+            { vec3(-0.5f, 0.5f, 0.f), vec3(BLACK), vec2(0.f, 1.f), vec3(NORMAL_ZPOS) },
+            { vec3(0.5f, 0.5f, 0.f), vec3(BLACK), vec2(1.f, 1.f), vec3(NORMAL_ZPOS) },
+            { vec3(0.5f, -0.5f, 0.f), vec3(BLACK), vec2(1.f, 0.f), vec3(NORMAL_ZPOS) },
         };
 
         indices = {

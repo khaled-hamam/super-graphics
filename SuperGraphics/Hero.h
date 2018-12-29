@@ -14,6 +14,7 @@ private:
 public:
 	int lives = 3;
 	int coins = 0;
+    bool isMoving = false;
 	Directions direction = STATIC;
 	vec3 lastPos;
 	float jumpStep = 0.1f, moveStep = 0.1f;
@@ -35,13 +36,46 @@ public:
 
 	Hero(vec3 position = vec3(0.f), vec3 rotaion = vec3(0.f), vec3 scale = vec3(1.f)) {
 		primitives = {
-			new Quad(ResourceManager::getTexture("hero"), vec3(0.f, 0.f, 0.f), vec3(0.f, 0.f, 0.f), vec3(1.f)),
+			new Quad(ResourceManager::getTexture("hero"), vec3(0.f), vec3(0.f, -45.f, 0.f), vec3(1.f)),
 		};
 		move(position);
 		rotate(rotaion);
 		changeScale(scale);
 		light = new PointLight();
+        this->scale = vec3(0.7f, 1.f, 1.f);
 	}
+
+    void render() override {
+        ((PointLight*)light)->position = this->position;
+        ((PointLight*)light)->use();
+
+        if (isMoving) {
+            string texture[6];
+            for (int i = 1; i <= 6; ++i) {
+                texture[i - 1] = "alien_run_" + to_string(i);
+            }
+
+            double time = glfwGetTime();
+            double decimal = time - (int)time;
+            int index = min(6 * decimal, 5.0);
+            for (auto primitive : primitives) {
+                primitive->render(ResourceManager::getTexture(texture[index]));
+            }
+        } else {
+            string texture[3];
+            for (int i = 1; i <= 3; ++i) {
+                texture[i - 1] = "alien_idle_" + to_string(i);
+            }
+
+            double time = glfwGetTime();
+            double decimal = time - (int)time;
+            int index = min(3 * decimal, 2.0);
+            for (auto primitive : primitives) {
+                primitive->render(ResourceManager::getTexture(texture[index]));
+            }
+        }
+    }
+
 	void update() {
 		if (direction == UP) {
 			this->move(vec3(0.f, jumpStep, 0.f));
@@ -56,11 +90,11 @@ public:
         } else {
 			this->move(vec3(0.f, -moveStep, 0.f));
 		}
-        ((PointLight*)light)->position = this->position;
-		((PointLight*)light)->use();
 	}
      
 	void handelInput(GLFWwindow *Window) {
+        bool shouldMove = false;
+
 		if (glfwGetKey(Window, scheme.Jump) == GLFW_PRESS && direction == STATIC) {
 			lastPos = this->position;
 			direction = UP;
@@ -68,9 +102,11 @@ public:
 		}
 		if (glfwGetKey(Window, scheme.Backward) == GLFW_PRESS) {
 			this->move(vec3(-moveStep, 0.f, 0.f));
+            shouldMove = true;
 		}
 		if (glfwGetKey(Window, scheme.Forward) == GLFW_PRESS) {
 			this->move(vec3(moveStep, 0.f, 0.f));
+            shouldMove = true;
 		}
         if (glfwGetKey(Window, scheme.Left) == GLFW_PRESS) {
             if (this->position.z >= 0)
@@ -80,6 +116,8 @@ public:
             if (this->position.z <= -1)
                 this->move(vec3(0.f, 0.f, 1.f));
         }
+
+        isMoving = shouldMove;
 	}
 
     void printState() {

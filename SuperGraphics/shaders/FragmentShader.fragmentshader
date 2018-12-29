@@ -22,7 +22,6 @@ struct PointLight {
     vec3 specular;
 };
 
-uniform sampler2D textureSampler;
 
 in vec3 vertexPosition;
 in vec3 fragmentColor;
@@ -34,7 +33,10 @@ out vec4 color;
 uniform DirectionalLight directionalLights[MAX_LIGHT_SOURCES];
 uniform PointLight pointLights[MAX_LIGHT_SOURCES];
 uniform vec3 cameraPos;
-
+uniform sampler2D textureSampler;
+uniform int directionalLightsCount;
+uniform int pointLightsCount;
+uniform int spotLightsCount;
 
 vec3 calcDirLight(DirectionalLight light, vec3 normal, vec3 viewDir, vec3 colorValue);
 vec3 calcPointLight(PointLight light, vec3 normal, vec3 viewDir, vec3 colorValue);
@@ -57,11 +59,11 @@ void main() {
 
 	vec3 light = vec3(0.f);
 
-	for (int i = 0; i < MAX_LIGHT_SOURCES; ++i) {
+	for (int i = 0; i < directionalLightsCount; ++i) {
 		light += calcDirLight(directionalLights[i], norm, viewDir, colorValue.xyz);
 	}
 
-	for (int i = 0; i < MAX_LIGHT_SOURCES; ++i) {
+	for (int i = 0; i < pointLightsCount; ++i) {
 		if (pointLights[i].constant != 1.0f)
 				break;
 		light += calcPointLight(pointLights[i], norm, viewDir, colorValue.xyz);

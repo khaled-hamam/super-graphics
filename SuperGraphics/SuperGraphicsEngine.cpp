@@ -7,7 +7,7 @@
 #include "Spaceship.h"
 #include "Spike.h"
 #include "Obstacle.h"
-#include "woodenBox.h"
+#include "WoodenBox.h"
 #include "Villian.h"
 #include "Lights.h"
 
@@ -80,8 +80,8 @@ Light *sun;
 
 void SuperGraphicsEngine::start()
 {
-    LevelGenerator generator;
-    this->level = generator.generateLevel();
+    LevelGenerator *generator = LevelGenerator::getInstance();
+    this->level = generator->generateLevel();
 
     mainCamera.bindHero(level->hero);
 	textEngine = new TextRenderer(windowWidth, windowHeight);
@@ -99,7 +99,6 @@ void SuperGraphicsEngine::start()
         
         this->handleInput();
         this->render();
-        this->checkCollision();
         glfwSwapBuffers(window);
 		glfwPollEvents();
     } while(glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS &&
@@ -151,9 +150,14 @@ void SuperGraphicsEngine::renderRunningScreen()
 
     textEngine->renderText("Lives: " + to_string(level->hero->lives), 5.f, 5.f, 1.0f, glm::vec3(BLACK));
     textEngine->renderText("Coins: " + to_string(level->hero->coins), 5.f, 60.f, 1.0f, glm::vec3(BLACK));
+    textEngine->renderText("Level: " + to_string(LevelGenerator::getInstance()->getCurrentLevel()), 5.f, 115.f, 1.0f, glm::vec3(BLACK));
+
+    this->checkCollision();
 
     if (level->hero->lives <= 0) {
         this->gameState = GAME_OVER;
+        LevelGenerator *generator = LevelGenerator::getInstance();
+        generator->generateLevel(false);
     }
 }
 
@@ -164,7 +168,7 @@ void SuperGraphicsEngine::renderReadyScreen() {
 
 void SuperGraphicsEngine::renderGameOverScreen() {
     textEngine->renderText("Game Over", 600, 375, 1.0f, glm::vec3(BLACK));
-    textEngine->renderText("Press Enter to Retry", 600, 450, 0.5f, glm::vec3(BLACK));
+    textEngine->renderText("Press Space to Retry", 600, 450, 0.5f, glm::vec3(BLACK));
 }
 
 void SuperGraphicsEngine::checkCollision() {
@@ -172,7 +176,12 @@ void SuperGraphicsEngine::checkCollision() {
         CollisionResult result = areColliding(level->hero, model);
         if (result.areColliding && !model->destroyed) {
             level->hero->direction = STATIC;
-            model->collision(level->hero, result.direction, result.distance);
+            if (typeid(*model) == typeid(NextLevelPortal)) {
+                model->collision(level->hero, result.direction, result.distance);
+                break;
+            } else {
+                model->collision(level->hero, result.direction, result.distance);
+            }
         }
     }
 }
@@ -227,7 +236,7 @@ void SuperGraphicsEngine::handleInput()
         }
         break;
     case GAME_OVER:
-        if (glfwGetKey(this->window, GLFW_KEY_ENTER) == GLFW_PRESS) {
+        if (glfwGetKey(this->window, GLFW_KEY_SPACE) == GLFW_PRESS) {
             this->gameState = RUNNING;
         }
         break;

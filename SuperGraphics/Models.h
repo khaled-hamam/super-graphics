@@ -8,6 +8,7 @@
 #include "Spaceship.h"
 #include "Spike.h"
 #include "Villian.h"
-#include "woodenBox.h"
+#include "WoodenBox.h"
 #include "FireBlock.h"
 #include "SmartEnemy.h"
+#include "NextLevelPortal.h"

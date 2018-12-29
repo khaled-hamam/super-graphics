@@ -14,14 +14,31 @@ void ResourceManager::initializeShaders()
 
 void ResourceManager::initializeTextures()
 {
+	textures["hero"] = new Texture("Assets/alien/alien_front.png",0);
+
+    textures["alien_idle_1"] = new Texture("Assets/alien/alien_idle_1.png", 0);
+    textures["alien_idle_2"] = new Texture("Assets/alien/alien_idle_2.png", 0);
+    textures["alien_idle_3"] = new Texture("Assets/alien/alien_idle_3.png", 0);
+    textures["alien_run_1"] = new Texture("Assets/alien/alien_run_1.png", 0);
+    textures["alien_run_2"] = new Texture("Assets/alien/alien_run_2.png", 0);
+    textures["alien_run_3"] = new Texture("Assets/alien/alien_run_3.png", 0);
+    textures["alien_run_4"] = new Texture("Assets/alien/alien_run_4.png", 0);
+    textures["alien_run_5"] = new Texture("Assets/alien/alien_run_5.png", 0);
+    textures["alien_run_6"] = new Texture("Assets/alien/alien_run_6.png", 0);
+
     textures["cat"] = new Texture("Assets/cat.png", 0);
 	textures["coin"] = new Texture("Assets/coin.png", 0);
-	textures["hero"] = new Texture("Assets/alien/alien_front.png",0);
 	textures["spaceship"] = new Texture("Assets/spaceship.png", 0);
     textures["box"] = new Texture("Assets/box/box.jpg", 0);
 	textures["box1"] = new Texture("Assets/box/box2.jpg", 0);
 	textures["brownBlock"] = new Texture("Assets/box/brownBlock.jpg", 0);
-	textures["lava"] = new Texture("Assets/lava.jpg", 0);
+    textures["lava"] = new Texture("Assets/lava.jpg", 0);
+    textures["portal"] = new Texture("Assets/portal.jpg", 0);
+
+    textures["villain01"] = new Texture("Assets/villain/villain01.png", 0);
+    textures["villain02"] = new Texture("Assets/villain/villain02.png", 0);
+    textures["villain-gold01"] = new Texture("Assets/villain/villain-gold01.png", 0);
+    textures["villain-gold02"] = new Texture("Assets/villain/villain-gold02.png", 0);
 
     textures["skybox-day"] = new Texture(vector<string> {
         "Assets/skybox/skybox_right.jpg",

@@ -4,6 +4,14 @@ GLuint Light::directionalLightsCount = 0;
 GLuint Light::pointLightsCount = 0;
 GLuint Light::spotLightsCount = 0;
 
+void Light::setCountUniforms()
+{
+    Shader *shader = ResourceManager::getShader("programShader");
+    shader->setInteger("directionalLightsCount", directionalLightsCount);
+    shader->setInteger("pointLightsCount", pointLightsCount);
+    shader->setInteger("spotLightsCount", spotLightsCount);
+}
+
 Light::Light(LightType light, vec3 ambient, vec3 diffuse, vec3 specular)
 {
     this->ambient = ambient;
@@ -23,6 +31,16 @@ Light::Light(LightType light, vec3 ambient, vec3 diffuse, vec3 specular)
         this->lightName = "spotLights[" + to_string(spotLightsCount) + "]";
         spotLightsCount++;
     }
+
+    setCountUniforms();
+}
+
+void Light::clearLights()
+{
+    Light::spotLightsCount = 0;
+    Light::directionalLightsCount = 0;
+    Light::pointLightsCount = 0;
+    setCountUniforms();
 }
 
 void Light::use()

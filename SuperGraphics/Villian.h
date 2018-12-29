@@ -9,13 +9,24 @@ public:
 	Directions dir = LEFT;
 
 	Villian(vec3 position = vec3(0.f), vec3 rotaion = vec3(0.f), vec3 scale = vec3(1.f)) {
-		primitives = {
-			new Quad(nullptr, vec3(0.f, 0.f, 0.f), vec3(0.f), vec3(1.f))
+        primitives = {
+            new Quad(nullptr, vec3(0.f), vec3(0.f, -45.f, 0.f), vec3(1.f))
 		};
 		move(position);
 		rotate(rotaion);
 		changeScale(scale);
+        this->scale = vec3(0.7f, 1.f, 1.f);
 	}
+
+    void render() override {
+        if (this->destroyed) return;
+
+        for (Primitive *premitive : primitives) {
+            string texture[] = {"villain01", "villain02"};
+            int index = ((int)(5 * glfwGetTime())) % 2;
+            premitive->render(ResourceManager::getTexture(texture[index]));
+        }
+    }
 
 	void update() {
 		//if (count != 100 && dir == LEFT) {

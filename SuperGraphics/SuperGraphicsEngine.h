@@ -26,7 +26,6 @@ private:
     GLFWwindow* window;
     GLuint windowWidth;
     GLuint windowHeight;
-    GLuint programID;
     
     GameState gameState = READY;
 	TextRenderer *textEngine;

@@ -70,6 +70,9 @@
     <ClCompile Include="Helpers.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
+    <ClCompile Include="LevelGenerator.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FPCamera.h">
@@ -129,9 +132,6 @@
     <ClInclude Include="Spike.h">
       <Filter>Models</Filter>
     </ClInclude>
-    <ClInclude Include="woodenBox.h">
-      <Filter>Models</Filter>
-    </ClInclude>
     <ClInclude Include="PowerUp.h">
       <Filter>Models</Filter>
     </ClInclude>
@@ -179,6 +179,12 @@
     </ClInclude>
     <ClInclude Include="Attenuation.h">
       <Filter>Light</Filter>
+    </ClInclude>
+    <ClInclude Include="WoodenBox.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="NextLevelPortal.h">
+      <Filter>Models</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

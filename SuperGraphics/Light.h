@@ -14,6 +14,7 @@ class Light {
     static GLuint directionalLightsCount;
     static GLuint pointLightsCount;
     static GLuint spotLightsCount;
+    static void setCountUniforms();
 
 public:
     string lightName;
@@ -22,6 +23,7 @@ public:
     vec3 specular;
 
     Light(LightType light, vec3 ambient, vec3 diffuse, vec3 specular);
+    static void clearLights();
     virtual void use();
     ~Light();
 };

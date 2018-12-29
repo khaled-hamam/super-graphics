@@ -10,13 +10,24 @@ private:
 public:
     SmartEnemy(Hero *hero, vec3 position = vec3(0.f), vec3 rotation = vec3(0.f), vec3 scale = vec3(1.f)) {
         this->primitives = {
-            new Quad(nullptr)            
+            new Quad(nullptr, vec3(0.f), vec3(0.f, -45.f, 0.f), vec3(1.f))            
         };
 
         this->hero = hero;
         this->move(position);
         this->rotate(rotation);
         this->changeScale(scale);
+        this->scale = vec3(0.7f, 1.f, 1.f);
+    }
+
+    void render() override {
+        if (this->destroyed) return;
+
+        for (Primitive *premitive : primitives) {
+            string texture[] = { "villain-gold01", "villain-gold02" };
+            int index = ((int)(5 * glfwGetTime())) % 2;
+            premitive->render(ResourceManager::getTexture(texture[index]));
+        }
     }
 
     void update() {

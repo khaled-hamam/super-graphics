@@ -61,39 +61,43 @@ void FPCamera::setCameraMode(CameraMode mode)
 
 void FPCamera::handleInput(GLFWwindow* window)
 {
+
     float step = 0.05f;
     float angle = 1.f;
 
-    if(glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
-        this->Walk(step);
+    if (!this->bindedHero) {
+        if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
+            this->Walk(step);
+        }
+        if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) {
+            this->Walk(-step);
+        }
+        if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) {
+            this->Strafe(step);
+        }
+        if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
+            this->Strafe(-step);
+        }
+        if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS) {
+            this->Fly(step);
+        }
+        if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS) {
+            this->Fly(-step);
+        }
+        if (glfwGetKey(window, GLFW_KEY_I) == GLFW_PRESS) {
+            this->Pitch(angle);
+        }
+        if (glfwGetKey(window, GLFW_KEY_K) == GLFW_PRESS) {
+            this->Pitch(-angle);
+        }
+        if (glfwGetKey(window, GLFW_KEY_J) == GLFW_PRESS) {
+            this->Yaw(angle);
+        }
+        if (glfwGetKey(window, GLFW_KEY_L) == GLFW_PRESS) {
+            this->Yaw(-angle);
+        }
+
     }
-    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) {
-        this->Walk(-step);
-    }
-    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) {
-        this->Strafe(step);
-    }
-    if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
-        this->Strafe(-step);
-    }
-    if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS) {
-        this->Fly(step);
-    }
-    if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS) {
-        this->Fly(-step);
-    } 
-    //if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS) {
-    //    this->Pitch(angle);
-    //}
-    //if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS) {
-    //    this->Pitch(-angle);
-    //}
-    //if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS) {
-    //    this->Yaw(angle);
-    //}
-    //if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS) {
-    //    this->Yaw(-angle);
-    //}
 
     if (glfwGetKey(window, GLFW_KEY_KP_1) == GLFW_PRESS || glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS) {
         updateCameraHeroControls(this, BACK_CAMERA);
