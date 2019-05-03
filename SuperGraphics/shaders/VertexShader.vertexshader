@@ -1,20 +1,23 @@
 #version 330 core
 
-layout(location = 0) in vec3 vertexPosition_modelspace; 
+layout(location = 0) in vec3 vertexPosition_ms; 
 layout(location = 1) in vec3 givenColor;
 layout(location = 2) in vec2 givenTextCoord;
+layout(location = 3) in vec3 normal;
 
-uniform mat4 MVP;
 uniform mat4 ModelMatrix;
 uniform mat4 ViewMatrix;
 uniform mat4 ProjectionMatrix;
 
+out vec3 vertexPosition;
 out vec3 fragmentColor;
 out vec2 fragmentTextCoord;
+out vec3 fragmentNormal;
 
 void main() {
-	gl_Position = ProjectionMatrix * ViewMatrix * ModelMatrix * vec4(vertexPosition_modelspace, 1.0);
+	gl_Position = ProjectionMatrix * ViewMatrix * ModelMatrix * vec4(vertexPosition_ms, 1.0);
+	vertexPosition = vec4(ModelMatrix * vec4(vertexPosition_ms, 1.f)).xyz;
 	fragmentColor = givenColor;
 	fragmentTextCoord = vec2(givenTextCoord.x, 1.0 - givenTextCoord.y);
+	fragmentNormal = mat3(ModelMatrix) * normal;
 }
-

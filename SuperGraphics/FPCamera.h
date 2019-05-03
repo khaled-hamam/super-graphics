@@ -1,9 +1,18 @@
 #ifndef FPCamera_h__
 #define FPCamera_h__
 
+#include <gl/glfw3.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/rotate_vector.hpp>
+
+class Hero;
+
+enum CameraMode {
+    FREE_CAMERA,
+    SIDE_CAMERA,
+    BACK_CAMERA
+};
 
 class FPCamera
 {
@@ -13,6 +22,9 @@ class FPCamera
 	glm::vec3 mDirection;
 	glm::mat4 mViewMatrix;
 	glm::mat4 mProjectionMatrix;
+    Hero* bindedHero;
+    Hero* prevBindedHero;
+    glm::vec3 positionOffset;
 
 	glm::vec3 GetLookDirection();
 
@@ -24,7 +36,14 @@ public:
 	glm::mat4 GetViewMatrix();
 	void SetPerspectiveProjection(float FOV, float aspectRatio, float near, float far);
 	glm::mat4 GetProjectionMatrix();
-
+    glm::vec3 getPosition();
+    void setPosition(glm::vec3 position);
+    void bindHero(Hero *hero, glm::vec3 positionOffset = glm::vec3(-5.f, 1.5f, -0.5f));
+    void updatePositionToHero();
+    friend void updateCameraPositionToHero(FPCamera *camera);
+    friend void updateCameraHeroControls(FPCamera *camera, CameraMode mode);
+    void setCameraMode(CameraMode mode);
+    void handleInput(GLFWwindow* window);
 	void Reset(float eyeX, float eyeY, float eyeZ, float centerX, float centerY, float centerZ, float upX, float upY, float upZ);
 	void Reset(const glm::vec3 &eye, const glm::vec3 &center, glm::vec3  &up);
 
@@ -77,5 +96,5 @@ public:
 	/// </summary>
 	void Slide(float stepR, float stepU, float stepD);
 };
-#endif // FPCamera_h__
 
+#endif // FPCamera_h__

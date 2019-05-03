@@ -1,19 +1,119 @@
 #version 330 core
 
-uniform sampler2D textureSampler;
+#define MAX_LIGHT_SOURCES 30
 
+struct DirectionalLight {
+	vec3 direction;
+    
+    vec3 ambient;
+    vec3 diffuse;
+    vec3 specular;
+};
+
+struct PointLight {
+	vec3 position;
+
+	float constant;
+    float linear;
+    float quadratic;
+
+    vec3 ambient;
+    vec3 diffuse;
+    vec3 specular;
+};
+
+
+in vec3 vertexPosition;
 in vec3 fragmentColor;
 in vec2 fragmentTextCoord;
+in vec3 fragmentNormal;
 
 out vec4 color;
 
+uniform DirectionalLight directionalLights[MAX_LIGHT_SOURCES];
+uniform PointLight pointLights[MAX_LIGHT_SOURCES];
+uniform vec3 cameraPos;
+uniform sampler2D textureSampler;
+uniform int directionalLightsCount;
+uniform int pointLightsCount;
+uniform int spotLightsCount;
+
+vec3 calcDirLight(DirectionalLight light, vec3 normal, vec3 viewDir, vec3 colorValue);
+vec3 calcPointLight(PointLight light, vec3 normal, vec3 viewDir, vec3 colorValue);
+
+
 void main() {
+	vec3 norm = normalize(fragmentNormal);
+    vec3 viewDir = normalize(cameraPos - vertexPosition);
+
 	vec4 textureColor = texture(textureSampler, fragmentTextCoord);
+	vec4 colorValue;
+	
 	if (textureColor != vec4(0.0f, 0.0f, 0.0f, 1.0f)) {
 		if(textureColor.a < 0.1)
 			discard;
-		color = textureColor;
+		colorValue = textureColor;
 	} else {
-		color = vec4(fragmentColor, 1.0);
+		colorValue = vec4(fragmentColor, 1.0);
 	}
+
+	vec3 light = vec3(0.f);
+
+	for (int i = 0; i < directionalLightsCount; ++i) {
+		light += calcDirLight(directionalLights[i], norm, viewDir, colorValue.xyz);
+	}
+
+	for (int i = 0; i < pointLightsCount; ++i) {
+		if (pointLights[i].constant != 1.0f)
+				break;
+		light += calcPointLight(pointLights[i], norm, viewDir, colorValue.xyz);
+	}
+
+	color = vec4(light, colorValue.a);
+}
+
+vec3 calcDirLight(DirectionalLight light, vec3 normal, vec3 viewDir, vec3 colorValue) {
+    vec3 lightDir = normalize(-light.direction);
+    
+    // Diffuse shading
+    float diff = max(dot(normal, lightDir), 0.0);
+    
+    // Specular shading
+    vec3 reflectDir = reflect(-lightDir, normal);
+    float spec = pow(max(dot(viewDir, reflectDir), 0.0), 30);
+    
+    // Combine results
+    vec3 ambient = light.ambient * colorValue;
+    vec3 diffuse = light.diffuse * diff * colorValue;
+    vec3 specular = light.specular * spec * colorValue;
+    
+    return ( ambient + diffuse + specular );
+}
+
+vec3 calcPointLight(PointLight light, vec3 normal, vec3 viewDir, vec3 colorValue){
+	vec3 lightDir = normalize(light.position - vertexPosition);
+    
+    // Diffuse shading
+    float diff = max(dot(normal, lightDir), 0.0);
+		
+    // Specular shading
+    vec3 reflectDir = reflect(-lightDir, normal);
+    float spec = pow(max(dot(viewDir, reflectDir), 0.0), 30);
+
+	// Attenuation
+	float constant = light.constant;
+	float linear = light.linear;
+	float quadratic = light.quadratic;
+    float distance = length(light.position - vertexPosition);
+    float attenuation = 1.0f / (constant + linear * distance + quadratic * (distance * distance));
+
+	vec3 ambient = light.ambient * colorValue;
+    vec3 diffuse = light.diffuse * diff * colorValue;
+    vec3 specular = light.specular * spec * colorValue;
+
+	ambient *= attenuation;
+    diffuse *= attenuation;
+    specular *= attenuation;
+
+	return ( ambient + diffuse + specular );
 }

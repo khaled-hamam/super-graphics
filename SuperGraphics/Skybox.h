@@ -10,6 +10,8 @@ private:
     GLuint vertexBufferID;
     GLuint indicesArrayBuffer;
 
+    bool nightMode;
+
     void init() {
         GLfloat SIZE = 500.0f;
         std::vector<GLfloat> vertices
@@ -91,7 +93,16 @@ private:
 
 public:
     Skybox() {
+        this->nightMode = false;
         init();
+    }
+
+    void setNightMode() {
+        this->nightMode = true;
+    }
+    
+    void setDayMode() {
+        this->nightMode = false;
     }
 
     void render() {
@@ -105,7 +116,9 @@ public:
         glDepthFunc(GL_LEQUAL);
 
         ResourceManager::getShader("skyboxShader")->useShader();
-        Texture *texture = ResourceManager::getTexture("skybox");
+        Texture *texture = this->nightMode 
+            ? ResourceManager::getTexture("skybox-night")
+            : ResourceManager::getTexture("skybox-day");
 
         texture->Bind();
         glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);

@@ -11,5 +11,8 @@ public:
     Shader() {}
     Shader(const char *vertex_file_path, const char *fragment_file_path);
     void useShader();
-    void setMat4(string matrix, const GLfloat *value);
+    void setMat4(string matrix, const GLfloat *value, GLenum transpose = GL_FALSE);
+    void setVec3(string vecName, const GLfloat *value);
+    void setFloat(string floatName, const GLfloat *value);
+	void setInteger(string integerName, const GLint value);
 };

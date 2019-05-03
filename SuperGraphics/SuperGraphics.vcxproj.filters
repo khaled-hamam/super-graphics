@@ -28,6 +28,12 @@
     <Filter Include="Shader\shaders">
       <UniqueIdentifier>{35341142-33f4-4c80-b0b7-b633e917cf19}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Light">
+      <UniqueIdentifier>{264c9e04-6af2-4e9a-ae08-ba8d512931e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Text">
+      <UniqueIdentifier>{ae559129-58d3-4ee7-b37e-d8013df21845}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="shader.cpp">
@@ -54,6 +60,18 @@
     </ClCompile>
     <ClCompile Include="stb_image.cpp">
       <Filter>Texture\TextureLoader</Filter>
+    </ClCompile>
+    <ClCompile Include="Light.cpp">
+      <Filter>Light</Filter>
+    </ClCompile>
+    <ClCompile Include="TextRenderer.cpp">
+      <Filter>Text</Filter>
+    </ClCompile>
+    <ClCompile Include="Helpers.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelGenerator.cpp">
+      <Filter>Utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -99,6 +117,75 @@
     <ClInclude Include="Skybox.h">
       <Filter>Models</Filter>
     </ClInclude>
+    <ClInclude Include="Coin.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Hero.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Spaceship.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Obstacle.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Spike.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="PowerUp.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Villian.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelGenerator.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Models.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionResult.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="normals.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="directions.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Light.h">
+      <Filter>Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Lights.h">
+      <Filter>Light</Filter>
+    </ClInclude>
+    <ClInclude Include="TextRenderer.h">
+      <Filter>Text</Filter>
+    </ClInclude>
+    <ClInclude Include="FireBlock.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="SmartEnemy.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Block.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="ControlScheme.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Attenuation.h">
+      <Filter>Light</Filter>
+    </ClInclude>
+    <ClInclude Include="WoodenBox.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="NextLevelPortal.h">
+      <Filter>Models</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\cubemap.fragmentshader">
@@ -117,6 +204,12 @@
       <Filter>Shader\shaders</Filter>
     </None>
     <None Include="shaders\skybox.vertexshader">
+      <Filter>Shader\shaders</Filter>
+    </None>
+    <None Include="shaders\text.fragmentshader">
+      <Filter>Shader\shaders</Filter>
+    </None>
+    <None Include="shaders\text.vertexshader">
       <Filter>Shader\shaders</Filter>
     </None>
   </ItemGroup>

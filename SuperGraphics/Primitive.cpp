@@ -32,6 +32,9 @@ void Primitive::init()
 	glEnableVertexAttribArray(2);
     glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, textCoord));
 
+    glEnableVertexAttribArray(3);
+    glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, normal));
+
     glBindVertexArray(0);
 }
 
@@ -51,6 +54,14 @@ void Primitive::render()
     if (texture) {
         texture->UnBind();
     }
+}
+
+void Primitive::render(Texture * texture)
+{
+    Texture *prevTexture = this->texture;
+    this->texture = texture;
+    this->render();
+    this->texture = prevTexture;
 }
 
 mat4 Primitive::getModelMatrix()

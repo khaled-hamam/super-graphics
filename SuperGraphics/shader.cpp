@@ -116,9 +116,30 @@ void Shader::useShader() {
     glUseProgram(this->shaderID);
 }
 
-void Shader::setMat4(string matrix, const GLfloat * value)
+void Shader::setMat4(string matrix, const GLfloat * value, GLenum transpose)
 {
     this->useShader();
     GLuint matrixID = glGetUniformLocation(this->shaderID, matrix.c_str());
-    glUniformMatrix4fv(matrixID, 1, GL_FALSE, value);
+    glUniformMatrix4fv(matrixID, 1, transpose, value);
+}
+
+void Shader::setVec3(string vecName, const GLfloat * value)
+{
+    this->useShader();
+    GLuint vecID = glGetUniformLocation(this->shaderID, vecName.c_str());
+    glUniform3fv(vecID, 1, value);
+}
+
+void Shader::setFloat(string floatName, const GLfloat * value)
+{
+    this->useShader();
+    GLuint vecID = glGetUniformLocation(this->shaderID, floatName.c_str());
+    glUniform1fv(vecID, 1, value);
+}
+
+void Shader::setInteger(string integerName, const GLint value)
+{
+	this->useShader();
+	GLuint intID = glGetUniformLocation(this->shaderID, integerName.c_str());
+	glUniform1i(intID, value);
 }

@@ -21,17 +21,18 @@ protected:
     GLuint vertexBufferID;
     GLuint indicesBufferID;
 
-    vec3 position;
-    vec3 scale;
     vec3 origin;
 
     Texture *texture;
 
 public:
+    vec3 scale;
+	vec3 position;
     vec3 rotation;
     Primitive(Texture *texture, vec3 position, vec3 rotation, vec3 scale);
     void init();
     void render();
+    void render(Texture *texture);
     mat4 getModelMatrix();
     ~Primitive();
 };
